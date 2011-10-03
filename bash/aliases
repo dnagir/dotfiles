@@ -1,0 +1,15 @@
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+alias ll='ls -al'
+
+
+# servers
+alias sshaleks='ssh 66.135.59.220 -p 31313 -l dnagir'
+alias sshlinoder='ssh root@173.255.243.67 -p 9999'
+alias sshlinode='ssh dima@173.255.243.67 -p 9999'
+
+# Ruby related
+alias b='bundle exec'
+alias gca='git commit -am'
+alias s='git status'
