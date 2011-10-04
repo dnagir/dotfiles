@@ -3,6 +3,9 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ll='ls -al'
 
+# Mac specific
+alias hfs='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
+alias hfh='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
 
 # servers
 alias sshaleks='ssh 66.135.59.220 -p 31313 -l dnagir'
