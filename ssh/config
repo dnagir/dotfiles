@@ -1,0 +1,4 @@
+Host web-server
+    HostName  173.255.243.67
+    Port 9999
+    User dima
