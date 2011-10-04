@@ -1,6 +1,8 @@
 " Example Vim graphical configuration.
 " Copy to ~/.gvimrc or ~/_gvimrc.
 
+set shellcmdflag=-ic              " This will load interactive shell (~/.bashrc and friends)
+
 "colorscheme vividchalk
 colorscheme slate
 
