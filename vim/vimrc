@@ -72,7 +72,9 @@ map <leader>tm :tabmove
 " Some tips from http://colonelpanic.net/2010/05/textmate-go-to-file-in-vim/
 nmap <leader>ff :FufFile **/<cr>
 nmap <leader>fb :FufBuffer<cr>
-nmap <leader>, :NERDTree<cr>
+
+nmap <leader>, :MRU<cr>
+nmap <leader>t :NERDTree<cr>
 
 " INSERT mode mappings.
 :imap jj <Esc>
