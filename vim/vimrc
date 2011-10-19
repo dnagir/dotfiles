@@ -74,7 +74,7 @@ nmap <leader>ff :FufFile **/<cr>
 nmap <leader>fb :FufBuffer<cr>
 
 nmap <leader>, :MRU<cr>
-nmap <leader>t :NERDTree<cr>
+nmap <leader>q :NERDTree<cr>
 
 " INSERT mode mappings.
 :imap jj <Esc>
