@@ -18,5 +18,6 @@ alias gca='git commit -am'
 alias s='git status'
 
 
+alias st='open -a /Applications/SourceTree.app .'
 alias cdpc='cd ~/proj/PropConnect'
 alias cdsb='cd ~/proj/shoebox'

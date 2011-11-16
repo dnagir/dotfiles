@@ -78,6 +78,8 @@ nmap <leader>q :NERDTree<cr>
 
 map <D-[> :bp<cr>
 map <D-]> :bn<cr>
+nmap <leader>d :bd<cr>
+nmap <leader>w :w<cr>
 
 " INSERT mode mappings.
 :imap jj <Esc>
