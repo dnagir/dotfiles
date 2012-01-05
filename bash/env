@@ -1,2 +1,5 @@
 export PATH="$HOME/bin:$PATH"
-export EDITOR="mvim"
+# export EDITOR="mvim"
+
+# https://github.com/jruby/jruby/wiki/Improving-startup-time
+export JRUBY_OPTS="--1.9 --client -J-d32"

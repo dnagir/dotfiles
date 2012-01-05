@@ -5,6 +5,7 @@
 . ~/dotfiles/bash/git-completion
 
 # git-prompt - as external git repo - https://github.com/lvv/git-prompt
+. ~/dotfiles/bash/git-prompt.conf
 [[ $- == *i* ]]   &&   . ~/dotfiles/bash/git-prompt.sh
 
 

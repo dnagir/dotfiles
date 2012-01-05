@@ -4,6 +4,7 @@
 [core]
 	filemode = true
 	excludesfile = /Users/dnagir/.gitignore_global
+  editor = vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
