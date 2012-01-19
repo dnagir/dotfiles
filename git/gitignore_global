@@ -1,0 +1,13 @@
+*~
+*.swp
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+db/neo4j-*
+
+# OS generated files #
+######################
+.DS_Store

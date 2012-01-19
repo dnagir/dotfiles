@@ -3,6 +3,15 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ll='ls -al'
 
+alias bgf='bin/guard -g focus'
+alias gf='bundle exec guard -g focus'
+alias brs='bin/rspec spec/'
+alias brss='bin/rspec'
+
+
+alias rb19='rvm use 1.9.3'
+alias rbj='rvm use jruby'
+
 # Mac specific
 alias hfs='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
 alias hfh='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
