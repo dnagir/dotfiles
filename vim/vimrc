@@ -77,10 +77,6 @@ map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
 
-" Some tips from http://colonelpanic.net/2010/05/textmate-go-to-file-in-vim/
-nmap <leader>ff :FufFile **/<cr>
-nmap <leader>fb :FufBuffer<cr>
-
 nmap <leader>, :CommandT<cr>
 nmap <leader>m :MRU<cr>
 nmap <leader>q :NERDTree<cr>
