@@ -21,3 +21,5 @@
   a=add . -A
   p=push --all
   ca=commit -am
+[color]
+	diff = always
