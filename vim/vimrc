@@ -23,7 +23,7 @@ set hidden                        " Handle multiple buffers better.
 set wildmenu                      " Enhanced command line completion.
 set wildmode=list:longest         " Complete files like a shell.
 
-" set ignorecase                    " Case-insensitive searching.
+set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
 
 set number                        " Show line numbers.
@@ -51,6 +51,11 @@ set softtabstop=2
 
 
 set mouse=a                      " Allows to use mouse scrolling
+
+" GRB: clear the search buffer when hitting return
+:nnoremap <CR> :nohlsearch<cr>
+
+
 
 set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
