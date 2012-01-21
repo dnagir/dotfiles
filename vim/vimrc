@@ -81,8 +81,18 @@ map <leader>tm :tabmove
 nmap <leader>ff :FufFile **/<cr>
 nmap <leader>fb :FufBuffer<cr>
 
-nmap <leader>, :MRU<cr>
+nmap <leader>, :CommandT<cr>
+nmap <leader>m :MRU<cr>
 nmap <leader>q :NERDTree<cr>
+
+" Command-T - allow using ESC
+" https://wincent.com/blog/tweaking-command-t-and-vim-for-use-in-the-terminal-and-tmux
+if &term =~ "xterm"
+  let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
+  let g:CommandTSelectNextMap = ['<C-n>', '<C-j>', '<ESC>OB']
+  let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>OA']
+endif
+
 
 map <D-[> :bp<cr>
 map <D-]> :bn<cr>
@@ -95,9 +105,6 @@ nmap <leader>w :w<cr>
 " Commonly used stuff
 map <leader>s :w<cr>:! ./script/test %<cr>
 
-
-" Uncomment to use Jamis Buck's file opening plugin
-map <Leader>t :FuzzyFinderTextMate<Enter>
 
 " Controversial...swap colon and semicolon for easier commands
 "nnoremap ; :
