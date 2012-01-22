@@ -89,6 +89,9 @@ if &term =~ "xterm"
   let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>OA']
 endif
 
+set wildignore+=.git,.svn,*.o,*.obj,tmp,*swp,*.log
+let g:CommandTMaxFiles = 50000      " Scan for more files if within a larger project (def=10000)
+
 
 map <D-[> :bp<cr>
 map <D-]> :bn<cr>
