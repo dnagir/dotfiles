@@ -1,5 +1,8 @@
 export PATH="$HOME/bin:$PATH"
 # export EDITOR="mvim"
 
+# Color grep output when possible
+export GREP_OPTIONS='--color=auto'
+
 # https://github.com/jruby/jruby/wiki/Improving-startup-time
 export JRUBY_OPTS="--1.9 --client -J-d32"
