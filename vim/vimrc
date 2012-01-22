@@ -77,7 +77,7 @@ map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
 
-nmap <leader>, :CommandT<cr>
+nmap <leader>, :CommandTBuffer<cr>
 nmap <leader>m :MRU<cr>
 nmap <leader>q :NERDTree<cr>
 
