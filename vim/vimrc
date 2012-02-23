@@ -62,7 +62,7 @@ set laststatus=2                  " Show the status line all the time
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 " Or use vividchalk
-colorscheme underwater-mod
+colorscheme vividchalk
 
 :let mapleader = ","
 
@@ -89,7 +89,7 @@ if &term =~ "xterm"
   let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>OA']
 endif
 
-set wildignore+=.git,.svn,*.o,*.obj,tmp,*swp,*.log
+set wildignore+=.git,.svn,*.o,*.obj,tmp,*swp,*.log,public/system/dragonfly,coverage/
 let g:CommandTMaxFiles = 50000      " Scan for more files if within a larger project (def=10000)
 
 

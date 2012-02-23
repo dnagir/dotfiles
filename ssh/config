@@ -2,3 +2,8 @@ Host web-server
     HostName  173.255.243.67
     Port 9999
     User dima
+
+Host pcs
+  HostName 111.67.21.251
+  Port 9999
+  User propconnect

@@ -3,6 +3,8 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ll='ls -al'
 
+alias f='fg'
+
 alias bgf='bin/guard -g focus'
 alias gf='bundle exec guard -g focus'
 alias brs='bin/rspec spec/'
