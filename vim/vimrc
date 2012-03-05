@@ -98,12 +98,19 @@ map <D-]> :bn<cr>
 nmap <leader>d :bd<cr>
 nmap <leader>w :w<cr>
 
+nmap <leader>a :A<cr>
+
 " INSERT mode mappings.
 :imap jj <Esc>
 
 " Commonly used stuff
 map <leader>s :w<cr>:! ./script/test %<cr>
 
+
+
+" Always enable spellchecking
+" disable with `:set nospell` if it gets in your way
+:setlocal spell spelllang=en_au
 
 " Controversial...swap colon and semicolon for easier commands
 "nnoremap ; :
