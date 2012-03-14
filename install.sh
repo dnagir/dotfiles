@@ -11,3 +11,5 @@ ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/git/gitignore_global ~/.gitignore_global
 
 ln -sf ~/dotfiles/ssh/config ~/.ssh/config
+
+ln -sf ~/dotfiles/gemrc ~/.gemrc
