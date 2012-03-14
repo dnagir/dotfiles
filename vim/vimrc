@@ -95,7 +95,10 @@ let g:CommandTMaxFiles = 50000      " Scan for more files if within a larger pro
 
 map <D-[> :bp<cr>
 map <D-]> :bn<cr>
-nmap <leader>d :bd<cr>
+" :bd will close buffer + window
+" Using this mapping to keep the window open
+" http://stackoverflow.com/questions/1444322/how-can-i-close-a-buffer-without-closing-the-window#answer-5179609
+nmap <leader>d :bprevious<CR>:bdelete #<CR>
 nmap <leader>w :w<cr>
 
 nmap <leader>a :A<cr>
