@@ -101,6 +101,10 @@ map <D-]> :bn<cr>
 nmap <leader>d :bprevious<CR>:bdelete #<CR>
 nmap <leader>w :w<cr>
 
+" Easier copy-paste to system clipboard:
+vmap <leader>y "*y
+vmap <leader>p "*p
+
 nmap <leader>a :A<cr>
 
 " INSERT mode mappings.
