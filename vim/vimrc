@@ -67,15 +67,15 @@ colorscheme vividchalk
 :let mapleader = ","
 
 " Tab mappings.
-map <leader>tt :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
+" map <leader>tt :tabnew<cr>
+" map <leader>te :tabedit
+" map <leader>tc :tabclose<cr>
+" map <leader>to :tabonly<cr>
+" map <leader>tn :tabnext<cr>
+" map <leader>tp :tabprevious<cr>
+" map <leader>tf :tabfirst<cr>
+" map <leader>tl :tablast<cr>
+" map <leader>tm :tabmove
 
 nmap <leader>, :CommandTBuffer<cr>
 nmap <leader>m :MRU<cr>
@@ -103,7 +103,7 @@ nmap <leader>w :w<cr>
 
 " Easier copy-paste to system clipboard:
 vmap <leader>y "*y
-vmap <leader>p "*p
+map <leader>p "*p
 
 nmap <leader>a :A<cr>
 
