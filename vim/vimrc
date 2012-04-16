@@ -115,6 +115,23 @@ map <leader>s :w<cr>:! ./script/test %<cr>
 
 
 
+
+
+" From https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PROMOTE VARIABLE TO RSPEC LET
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>l :PromoteToLet<cr>
+
+
 " Always enable spellchecking
 " disable with `:set nospell` if it gets in your way
 :setlocal spell spelllang=en_au
