@@ -19,6 +19,8 @@
   co=checkout
   s=status
   a=add . -A
+  d=diff
+  dc=diff --cached
   p=push --all
   ca=commit -am
 [color]
