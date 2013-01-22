@@ -1,5 +1,7 @@
 export PATH="$HOME/bin:$PATH"
 
+export PSQL_EDITOR=vim
+
 # Overtake installation on OSX (such as PostgreSQL)
 export PATH=/usr/local/bin:$PATH
 # export EDITOR="mvim"

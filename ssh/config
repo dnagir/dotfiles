@@ -1,9 +1,23 @@
 Host web-server
-    HostName  173.255.243.67
-    Port 9999
-    User dima
+  HostName  173.255.243.67
+  Port 9999
+  User dima
+  ServerAliveInterval 60
 
 Host pcs
   HostName 111.67.21.251
   Port 9999
   User propconnect
+  ServerAliveInterval 60
+
+Host pcnf
+  HostName staging.v2.propconnect.com
+  Port 9999
+  User propconnect_staging
+  ServerAliveInterval 60
+
+Host pcpnf
+  HostName propconnect.com
+  Port 9999
+  User propconnect_production
+  ServerAliveInterval 60
