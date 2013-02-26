@@ -27,6 +27,7 @@ alias sshlinode='ssh dima@173.255.243.67 -p 9999'
 alias b='bundle exec'
 alias gca='git commit -am'
 alias s='git status'
+alias gpom='git pull origin master'
 alias z='zeus'
 
 # MongoDB
