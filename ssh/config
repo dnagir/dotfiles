@@ -4,20 +4,26 @@ Host web-server
   User dima
   ServerAliveInterval 60
 
+
 Host pcs
-  HostName 111.67.21.251
-  Port 9999
-  User propconnect
+  HostName ec2-54-206-8-232.ap-southeast-2.compute.amazonaws.com
+  User deploy
   ServerAliveInterval 60
 
-Host pcnf
-  HostName staging.v2.propconnect.com
-  Port 9999
-  User propconnect_staging
+
+
+Host pca
+  HostName ec2-54-206-8-38.ap-southeast-2.compute.amazonaws.com
+  User deploy
   ServerAliveInterval 60
 
-Host pcpnf
-  HostName propconnect.com
-  Port 9999
-  User propconnect_production
+Host pcu
+  HostName ec2-54-206-8-143.ap-southeast-2.compute.amazonaws.com
+  User deploy
   ServerAliveInterval 60
+
+Host pcd
+  HostName ec2-54-206-8-148.ap-southeast-2.compute.amazonaws.com
+  User deploy
+  ServerAliveInterval 60
+

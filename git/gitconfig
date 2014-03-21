@@ -25,3 +25,5 @@
   ca=commit -am
 [color]
 	diff = always
+[push]
+	default = matching

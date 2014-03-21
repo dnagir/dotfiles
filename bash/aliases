@@ -34,5 +34,5 @@ alias z='zeus'
 #alias mongostart=mongod run --config /usr/local/Cellar/mongodb/2.0.0-x86_64/mongod.conf
 
 alias st='open -a /Applications/SourceTree.app .'
-alias cdpc='cd ~/proj/PropConnect'
+alias cdpc='cd ~/proj/pc/PropConnect'
 alias cdsb='cd ~/proj/shoebox'
