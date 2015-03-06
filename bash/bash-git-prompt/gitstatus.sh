@@ -9,10 +9,15 @@
 count_lines() { echo "$1" | egrep -c "^$2" ; }
 all_lines() { echo "$1" | grep -v "^$" | wc -l ; }
 
-# change those symbols to whatever you prefer
-symbols_ahead='↑·'
-symbols_behind='↓·'
-symbols_prehash=':'
+if [ -z "${__GIT_PROMPT_DIR}" ]; then
+  SOURCE="${BASH_SOURCE[0]}"
+  while [ -h "${SOURCE}" ]; do
+    DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
+    SOURCE="$(readlink "${SOURCE}")"
+    [[ $SOURCE != /* ]] && SOURCE="${DIR}/${SOURCE}"
+  done
+  __GIT_PROMPT_DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
+fi
 
 gitsym=`git symbolic-ref HEAD`
 
@@ -33,8 +38,8 @@ staged_files=`git diff --staged --name-status`
 num_changed=$(( `all_lines "$gitstatus"` - `count_lines "$gitstatus" U` ))
 num_conflicts=`count_lines "$staged_files" U`
 num_staged=$(( `all_lines "$staged_files"` - num_conflicts ))
-num_untracked=`git status -s -uall | grep -c "^??"`
-if [[ -n "$GIT_PROMPT_IGNORE_STASH" ]]; then
+num_untracked=`git ls-files --others --exclude-standard $(git rev-parse --show-cdup) | wc -l`
+if [[ "$__GIT_PROMPT_IGNORE_STASH" = "1" ]]; then
   num_stashed=0
 else	
   num_stashed=`git stash list | wc -l`
@@ -52,11 +57,11 @@ if [[ -z "$branch" ]]; then
   if [[ -n "$tag" ]]; then
     branch="$tag"
   else
-    branch="${symbols_prehash}`git rev-parse --short HEAD`"
+    branch="_PREHASH_`git rev-parse --short HEAD`"
   fi
 else
   remote_name=`git config branch.${branch}.remote`
-  
+
   if [[ -n "$remote_name" ]]; then
     merge_name=`git config branch.${branch}.merge`
   else
@@ -67,7 +72,16 @@ else
   if [[ "$remote_name" == '.' ]]; then
     remote_ref="$merge_name"
   else
-    remote_ref="refs/remotes/$remote_name/${merge_name##*/}"
+    remote_ref="refs/remotes/$remote_name/${merge_name##refs/heads/}"
+  fi
+
+  # detect if the local branch have a remote tracking branch
+  cmd_output=$(git rev-parse --abbrev-ref ${branch}@{upstream} 2>&1 >/dev/null)
+
+  if [ `count_lines "$cmd_output" "fatal: No upstream"` == 1 ] ; then
+    has_remote_tracking=0
+  else
+    has_remote_tracking=1
   fi
 
   # get the revision list, and count the leading "<" and ">"
@@ -76,15 +90,20 @@ else
   num_ahead=`count_lines "$revgit" "^>"`
   num_behind=$(( num_revs - num_ahead ))
   if (( num_behind > 0 )) ; then
-    remote="${remote}${symbols_behind}${num_behind}"
+    remote="${remote}_BEHIND_${num_behind}"
   fi
   if (( num_ahead > 0 )) ; then
-    remote="${remote}${symbols_ahead}${num_ahead}"
+    remote="${remote}_AHEAD_${num_ahead}"
   fi
 fi
+
 if [[ -z "$remote" ]] ; then
   remote='.'
 fi
+
+if [[ "$has_remote_tracking" == "0" ]] ; then
+  remote='_NO_REMOTE_TRACKING_'
+fi 
 
 for w in "$branch" "$remote" $num_staged $num_conflicts $num_changed $num_untracked $num_stashed $clean ; do
   echo "$w"

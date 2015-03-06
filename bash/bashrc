@@ -4,7 +4,16 @@
 
 . ~/dotfiles/bash/git-completion
 
-. ~/dotfiles/bash/.bash-git-prompt/gitprompt.sh
+
+
+### PROMPT OPTIONS
+# Default - 5mins, change to 3hr (360mins)
+#export GIT_PROMPT_FETCH_TIMEOUT=180
+#export GIT_PROMPT_END="${White}${ResetColor} $ "
+
+export GIT_PROMPT_THEME=Dima
+. ~/dotfiles/bash/bash-git-prompt/gitprompt.sh
+
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
