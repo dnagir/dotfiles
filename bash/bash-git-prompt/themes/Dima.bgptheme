@@ -3,9 +3,10 @@
 # These are the defaults from the "Default" theme 
 # You just need to override what you want to have changed
 override_git_prompt_colors() {
-  GIT_PROMPT_THEME_NAME="Custom"
+  GIT_PROMPT_THEME_NAME="Dima"
 
   # Time12a="\$(date +%H:%M)"
+  Time12a=""
   # PathShort="\w";
 
   ## These are the color definitions used by gitprompt.sh
@@ -41,6 +42,7 @@ override_git_prompt_colors() {
   # GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_ ${Yellow}${PathShort}${ResetColor}"
   # GIT_PROMPT_START_ROOT="_LAST_COMMAND_INDICATOR_ ${GIT_PROMPT_START_USER}"
   # GIT_PROMPT_END_USER=" \n${White}${Time12a}${ResetColor} $ "
+  GIT_PROMPT_END_USER="${White}${ResetColor} $ "
   # GIT_PROMPT_END_ROOT=" \n${White}${Time12a}${ResetColor} # "
 
   ## Please do not add colors to these symbols
@@ -50,4 +52,5 @@ override_git_prompt_colors() {
   # GIT_PROMPT_SYMBOLS_NO_REMOTE_TRACKING="L" # This symbol is written after the branch, if the branch is not tracked 
 }
 
-reload_git_prompt_colors "Custom"
+
+reload_git_prompt_colors "Dima"

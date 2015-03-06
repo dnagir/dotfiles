@@ -7,11 +7,9 @@
 
 
 ### PROMPT OPTIONS
-# Default - 5mins, change to 3hr (360mins)
-#export GIT_PROMPT_FETCH_TIMEOUT=180
-#export GIT_PROMPT_END="${White}${ResetColor} $ "
-
 export GIT_PROMPT_THEME=Dima
+# Default - 5mins, change to 3hr (360mins)
+export GIT_PROMPT_FETCH_TIMEOUT=180
 . ~/dotfiles/bash/bash-git-prompt/gitprompt.sh
 
 
