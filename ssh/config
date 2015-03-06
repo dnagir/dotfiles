@@ -1,29 +1,16 @@
-Host web-server
-  HostName  173.255.243.67
-  Port 9999
-  User dima
-  ServerAliveInterval 60
-
-
 Host pcs
-  HostName ec2-54-206-8-232.ap-southeast-2.compute.amazonaws.com
-  User deploy
+  HostName staging.propconnect.com
+  User dima
   ServerAliveInterval 60
 
 
 
 Host pca
-  HostName ec2-54-206-8-38.ap-southeast-2.compute.amazonaws.com
-  User deploy
+  HostName 54.206.60.0
+  User dima
   ServerAliveInterval 60
 
-Host pcu
-  HostName ec2-54-206-8-143.ap-southeast-2.compute.amazonaws.com
-  User deploy
+Host pcw
+  HostName 54.79.30.126
+  User dima
   ServerAliveInterval 60
-
-Host pcd
-  HostName ec2-54-206-8-148.ap-southeast-2.compute.amazonaws.com
-  User deploy
-  ServerAliveInterval 60
-
