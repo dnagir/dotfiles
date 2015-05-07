@@ -1,11 +1,38 @@
-" Example Vim configuration.
-" Copy or symlink to ~/.vimrc or ~/_vimrc.
-
 set nocompatible                  " Must come first because it changes other options.
+
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+
+Plugin 'ctrlp.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+
+" https://github.com/stevenocchipinti/dotvim/blob/master/vimrc
+" CTRL-P PLUGIN
+let g:ctrlp_user_command = {
+\   'types': {
+\     1: ['.git/', 'cd %s && git ls-files -co --exclude-standard'],
+\     2: ['.hg/', 'hg --cwd %s locate -I .'],
+\   },
+\   'fallback': 'find %s -type f'
+\ }
+map <leader><C-P> <C-P><C-\>w
+
+
+
+
+
+
 
 filetype off
 call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+execute pathogen#infect()
 "silent! call pathogen#runtime_append_all_bundles()
 
 syntax enable                     " Turn on syntax highlighting.
@@ -77,20 +104,10 @@ colorscheme vividchalk
 " map <leader>tl :tablast<cr>
 " map <leader>tm :tabmove
 
-nmap <leader>, :CommandTBuffer<cr>
 nmap <leader>m :MRU<cr>
 nmap <leader>q :NERDTree<cr>
 
-" Command-T - allow using ESC
-" https://wincent.com/blog/tweaking-command-t-and-vim-for-use-in-the-terminal-and-tmux
-if &term =~ "xterm"
-  let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
-  let g:CommandTSelectNextMap = ['<C-n>', '<C-j>', '<ESC>OB']
-  let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>OA']
-endif
-
 set wildignore+=.git,.svn,*.o,*.obj,tmp,*swp,*.log,public/system/dragonfly,coverage/
-let g:CommandTMaxFiles = 50000      " Scan for more files if within a larger project (def=10000)
 
 
 map <D-[> :bp<cr>
