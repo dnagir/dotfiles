@@ -12,6 +12,10 @@ Plugin 'ctrlp.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+:hi CursorLine cterm=NONE ctermbg=darkgray ctermfg=green
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
+
 
 " https://github.com/stevenocchipinti/dotvim/blob/master/vimrc
 " CTRL-P PLUGIN
@@ -104,8 +108,13 @@ colorscheme vividchalk
 " map <leader>tl :tablast<cr>
 " map <leader>tm :tabmove
 
-nmap <leader>m :MRU<cr>
 nmap <leader>q :NERDTree<cr>
+
+" CtrlP shortcuts
+nmap <leader>t :CtrlP<cr>
+nmap <leader>, :CtrlPBuffer<cr>
+nmap <leader>m :CtrlPMRU<cr>
+" nmap <leader>m :MRU<cr>
 
 set wildignore+=.git,.svn,*.o,*.obj,tmp,*swp,*.log,public/system/dragonfly,coverage/
 
