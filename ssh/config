@@ -20,3 +20,35 @@ Host pcw
   HostName 54.79.30.126
   User dima
   ServerAliveInterval 60
+
+Host prodjb
+  HostName bastion.mad-prod.realestate.com.au
+  User ec2-user
+  IdentityFile ~/.ssh/nat-prod-instances.pem
+  Port 45765
+
+
+
+Host mad-ci
+  HostName mad-bamboomaster.mad-ci.realestate.com.au
+  User ec2-user
+  IdentityFile ~/.ssh/mad-team.pem
+  ProxyCommand ssh prodjb nc -w 120 %h %p
+
+Host agent
+  HostName 10.21.18.4
+  User ec2-user
+  IdentityFile ~/.ssh/mad-team.pem
+  ProxyCommand ssh prodjb nc -w 120 %h %p
+
+
+Host *
+  User dmytrii.nagirniak
+  ForwardAgent yes
+
+Host ppjb
+  HostName 52.64.19.173
+  Port 45765
+  User ec2-user
+  ForwardAgent true
+  IdentityFile ~/.ssh/staging-mad-team.pem

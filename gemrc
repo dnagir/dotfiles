@@ -1,1 +1,6 @@
 gem: --no-ri --no-rdoc
+:sources:
+- http://dist.dev.int.realestate.com.au/rubygems/
+- http://rea-rubygems
+- http://gems.rubyforge.org/
+- https://rubygems.org/
