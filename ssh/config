@@ -42,12 +42,12 @@ Host agent
   ProxyCommand ssh prodjb nc -w 120 %h %p
 
 
-Host *
-  User dmytrii.nagirniak
-  ForwardAgent yes
+#Host *
+#  User dmytrii.nagirniak
+#  ForwardAgent yes
 
 Host ppjb
-  HostName 52.64.19.173
+  HostName 52.64.16.163
   Port 45765
   User ec2-user
   ForwardAgent true
