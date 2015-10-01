@@ -3,7 +3,7 @@
 	email = dmytrii.nagirniak@rea-group.com
 [core]
 	filemode = true
-	excludesfile = /Users/dnagir/.gitignore_global
+	excludesfile = ~/.gitignore_global
   editor = vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
