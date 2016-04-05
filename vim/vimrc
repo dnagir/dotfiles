@@ -9,6 +9,7 @@ call vundle#begin()
 
 Plugin 'ctrlp.vim'
 Plugin 'thoughtbot/vim-rspec'
+Plugin 'elixir-lang/vim-elixir'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

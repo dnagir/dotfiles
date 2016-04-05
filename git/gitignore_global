@@ -1,6 +1,7 @@
 *~
 *.swp
 .idea/
+.byebug_history
 
 # Logs and databases #
 ######################
