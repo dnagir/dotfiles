@@ -14,11 +14,6 @@ Plugin 'elixir-lang/vim-elixir'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-:hi CursorLine cterm=NONE ctermbg=darkgray ctermfg=green
-:highlight ExtraWhitespace ctermbg=red guibg=red
-:match ExtraWhitespace /\s\+$/
-
-
 " https://github.com/stevenocchipinti/dotvim/blob/master/vimrc
 " CTRL-P PLUGIN
 let g:ctrlp_user_command = {
@@ -96,6 +91,16 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*Cap
 
 " Or use vividchalk
 colorscheme vividchalk
+
+
+" Has to be after colorscheme as it may override it
+" Highlight trailing whitespace, but not during insertion
+highlight TrailingWhitespace ctermbg=red guibg=red
+au BufEnter    * match TrailingWhitespace /\s\+$/
+au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match TrailingWhitespace /\s\+$/
+au BufWinLeave * call clearmatches()
+
 
 :let mapleader = ","
 
