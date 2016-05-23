@@ -1,3 +1,1 @@
-# REA AWS SAML functions: https://git.realestate.com.au/deployment/saml-aws-functions
 export AWS_CLI=/usr/local/bin/aws
-source ~/rea/saml-aws-functions/bash-functions
