@@ -1,54 +1,39 @@
-Host git.realestate.com.au
- HostName git.realestate.com.au
- User git
- Port 65422
-
-
-Host pcs
-  HostName staging.propconnect.com
-  User dima
-  ServerAliveInterval 60
-
-
-
-Host pca
-  HostName 54.206.60.0
-  User dima
-  ServerAliveInterval 60
-
-Host pcw
-  HostName 54.79.30.126
-  User dima
-  ServerAliveInterval 60
-
-Host prodjb
-  HostName bastion.mad-prod.realestate.com.au
-  User ec2-user
-  IdentityFile ~/.ssh/nat-prod-instances.pem
-  Port 45765
-
-
-
-Host mad-ci
-  HostName mad-bamboomaster.mad-ci.realestate.com.au
-  User ec2-user
-  IdentityFile ~/.ssh/mad-team.pem
-  ProxyCommand ssh prodjb nc -w 120 %h %p
-
-Host agent
-  HostName 10.21.18.4
-  User ec2-user
-  IdentityFile ~/.ssh/mad-team.pem
-  ProxyCommand ssh prodjb nc -w 120 %h %p
-
-
 Host *
   ForwardAgent yes
-#  User dmytrii.nagirniak
 
-Host ppjb
-  HostName 52.64.16.163
-  Port 45765
-  User ec2-user
-  ForwardAgent true
-  IdentityFile ~/.ssh/staging-mad-team.pem
+
+
+# CultureAmp config
+
+Host star01prod.ca.aws app*.ca.aws playground.ca.aws backup01prod.ca.aws
+  User murmur
+
+Host 10.0.0.10 10.0.0.11 10.0.1.10 10.1.0.10 10.1.1.10 10.0.2.10
+  User murmur
+
+Host splunk.ca.aws
+  user ec2-user
+
+Host playground
+  Hostname playground.ca.aws
+  User murmur
+
+Host staging
+  Hostname app01staging.ca.aws
+  User murmur
+
+Host production
+  Hostname star01prod.ca.aws
+  User murmur
+
+Host devops devops.ca.aws
+  Hostname devops.ca.aws
+  # Update the line below with your username and uncomment it
+  # User yourusername
+  User dima
+  ForwardAgent yes
+
+Host *.ca.aws
+  User ubuntu
+  # 'ansible' AWS private key should
+  # be obtained from LastPass to access using ubuntu user
