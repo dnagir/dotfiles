@@ -5,23 +5,9 @@ alias ll='ls -al'
 
 alias f='fg'
 
-alias bgf='bin/guard -g focus'
-alias gf='bundle exec guard -g focus'
-alias brs='bin/rspec spec/'
-alias brss='bin/rspec'
-
-
-alias rb19='rvm use 1.9.3'
-alias rbj='rvm use jruby'
-
-# Mac specific
-alias hfs='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
-alias hfh='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
-
-# servers
-alias sshaleks='ssh 66.135.59.220 -p 31313 -l dnagir'
-alias sshlinoder='ssh root@173.255.243.67 -p 9999'
-alias sshlinode='ssh dima@173.255.243.67 -p 9999'
+alias d='docker'
+alias drma='docker rm -f $(docker ps -a -q)'
+alias drmia='docker rmi $(docker images -q)'
 
 # Ruby related
 alias b='bundle exec'
@@ -30,8 +16,4 @@ alias s='git status'
 alias gpom='git pull origin master'
 alias z='zeus'
 
-# MongoDB
-#alias mongostart=mongod run --config /usr/local/Cellar/mongodb/2.0.0-x86_64/mongod.conf
-
 alias st='open -a /Applications/SourceTree.app .'
-alias cdpc='cd ~/rea/PropConnect'
