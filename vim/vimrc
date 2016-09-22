@@ -90,7 +90,7 @@ set laststatus=2                  " Show the status line all the time
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 " Or use vividchalk
-colorscheme vividchalk
+colorscheme brogrammer
 
 
 " Has to be after colorscheme as it may override it
@@ -115,7 +115,8 @@ au BufWinLeave * call clearmatches()
 " map <leader>tl :tablast<cr>
 " map <leader>tm :tabmove
 
-nmap <leader>q :NERDTree<cr>
+nmap <leader>qq :NERDTree<cr>
+nmap <leader>qf :NERDTreeFind<cr>
 
 " CtrlP shortcuts
 nmap <leader>t :CtrlP<cr>
@@ -188,7 +189,31 @@ function! AlternateForCurrentFile()
   endif
   return new_file
 endfunction
-nnoremap <leader>a :call OpenTestAlternate()<cr>
+nnoremap <leader>A :call OpenTestAlternate()<cr>
+
+
+
+function! AlternateForPlainRubyCurrentFile()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_spec = match(current_file, '^spec/') != -1
+  let going_to_spec = !in_spec
+
+  if going_to_spec
+    let new_file = substitute(new_file, '^lib/', '', '')
+    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
+    let new_file = 'spec/' . new_file
+  else
+    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    let new_file = substitute(new_file, '^spec/', 'lib/', '')
+  endif
+  return new_file
+endfunction
+function! OpenPlainRubyAlternative()
+  let new_file = AlternateForPlainRubyCurrentFile()
+  exec ':e ' . new_file
+endfunction
+nnoremap <leader>a :call OpenPlainRubyAlternative()<cr>
 
 
 
