@@ -6,6 +6,7 @@
 
 . ~/dotfiles/bash/git-completion
 
+. ~/dotfiles/bash/docker
 
 
 ### PROMPT OPTIONS

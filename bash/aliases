@@ -5,10 +5,6 @@ alias ll='ls -al'
 
 alias f='fg'
 
-alias d='docker'
-alias drma='docker rm -f $(docker ps -a -q)'
-alias drmia='docker rmi $(docker images -q)'
-
 # Ruby related
 alias b='bundle exec'
 alias gca='git commit -am'
