@@ -1,37 +1,83 @@
 Host *
   ForwardAgent yes
+  ServerAliveInterval 30
 
-
+# staging
+Host jumpbox
+  Hostname 10.100.102.49
+  user ec2-user
 
 # CultureAmp config
-
-Host star01prod.ca.aws app*.ca.aws playground.ca.aws backup01prod.ca.aws
+Host star01prod.ca.aws app*.ca.aws playground.ca.aws backup01prod.ca.aws staging.ca.aws grumpycat.ca.aws lilbub.ca.aws aslan.ca.aws ragdoll.ca.aws ca-sandbox.ca.aws
   User murmur
 
-Host 10.0.0.10 10.0.0.11 10.0.1.10 10.1.0.10 10.1.1.10 10.0.2.10
+Host 10.0.0.* 10.0.1.* 10.1.0.* 10.1.1.* 10.0.2.*
   User murmur
 
 Host splunk.ca.aws
   user ec2-user
 
+Host staging
+  Hostname staging.ca.aws
+  User murmur
+
 Host playground
   Hostname playground.ca.aws
   User murmur
 
-Host staging
-  Hostname app01staging.ca.aws
+Host grumpycat
+  Hostname grumpycat.ca.aws
+  User murmur
+
+Host lilbub
+  Hostname lilbub.ca.aws
+  User murmur
+
+Host aslan
+  Hostname aslan.ca.aws
+  User murmur
+
+Host ragdoll
+  Hostname ragdoll.ca.aws
+  User murmur
+
+Host knut
+  Hostname knut.ca.aws
+  User murmur
+
+Host ca-sandbox
+  Hostname ca-sandbox.ca.aws
   User murmur
 
 Host production
   Hostname star01prod.ca.aws
   User murmur
 
-Host devops devops.ca.aws
-  Hostname devops.ca.aws
+Host devops devops.cultureamp.net
+  Hostname devops.cultureamp.net
   # Update the line below with your username and uncomment it
   # User yourusername
-  User dima
   ForwardAgent yes
+
+Host ipsec01.oregon.ca.aws
+  User centos
+  IdentityFile ~/.ssh/cultureamp-us-west-2.pem
+
+Host ipsec01.california.ca.aws
+  User centos
+  IdentityFile ~/.ssh/cultureamp-us-west-1.pem
+
+Host nessus.ca.aws
+  User ec2-user
+  IdentityFile ~/.ssh/nessus.pem
+
+Host openvpn01.california.ca.aws
+  User openvpnas
+  IdentityFile ~/.ssh/cultureamp-openvpn.pem
+
+Host openvpn01.oregon.ca.aws
+  User openvpnas
+  IdentityFile ~/.ssh/cultureamp-openvpnhvm.pem
 
 Host *.ca.aws
   User ubuntu
