@@ -11,6 +11,13 @@ Plugin 'ctrlp.vim'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'elixir-lang/vim-elixir'
 
+""""""""""""""""""""""""""""" Rust
+Plugin 'rust-lang/rust.vim'
+Plugin 'vim-syntastic/syntastic'
+"Plugin 'valloric/YouCompleteMe'
+" Instead of YouCompleteMe try? -->> Plugin 'racer-rust/vim-racer'
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -24,9 +31,6 @@ let g:ctrlp_user_command = {
 \   'fallback': 'find %s -type f'
 \ }
 map <leader><C-P> <C-P><C-\>w
-
-
-
 
 
 
@@ -230,6 +234,12 @@ endfunction
 
 function! RunRspecViaScriptTest()
   let g:rspec_command = "!script/test {spec}"
+endfunction
+
+
+function! RustTesting()
+  map <Leader>s :! cargo test focus --color=always -- --color=always 2>&1 \| head -n 20<CR>
+  map <Leader>S :! cargo test --color=always -- --color=always 2>&1 \| head -n 20<CR>
 endfunction
 
 call RunRspecViaBundle()
