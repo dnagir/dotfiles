@@ -225,11 +225,11 @@ nnoremap <leader>a :call OpenPlainRubyAlternative()<cr>
 " Shortcuts for
 " https://github.com/thoughtbot/vim-rspec
 function! RunRspecViaZeus()
-  let g:rspec_command = "!time zeus rspec --order defined --tag=@focus {spec}"
+  let g:rspec_command = "!time zeus rspec --order defined {spec}"
 endfunction
 
 function! RunRspecViaBundle()
-  let g:rspec_command = "!bundle exec rspec --order defined --tag=@focus {spec}"
+  let g:rspec_command = "!bundle exec rspec --order defined {spec}"
 endfunction
 
 function! RunRspecViaScriptTest()
