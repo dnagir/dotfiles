@@ -7,6 +7,10 @@ Host jumpbox
   Hostname 10.100.102.49
   user ec2-user
 
+Host star-server
+  Hostname 10.0.0.74
+  user murmur
+
 # CultureAmp config
 Host star01prod.ca.aws app*.ca.aws playground.ca.aws backup01prod.ca.aws staging.ca.aws grumpycat.ca.aws lilbub.ca.aws aslan.ca.aws ragdoll.ca.aws ca-sandbox.ca.aws
   User murmur

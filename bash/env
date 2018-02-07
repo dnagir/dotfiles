@@ -1,2 +1,1 @@
-export AWS_CLI=/usr/local/bin/aws
 eval "$(direnv hook bash)"
