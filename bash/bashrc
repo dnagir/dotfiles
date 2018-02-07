@@ -6,6 +6,7 @@
 
 . ~/dotfiles/bash/git-completion
 
+. ~/dotfiles/bash/aws
 . ~/dotfiles/bash/docker
 
 
@@ -16,22 +17,8 @@ export GIT_PROMPT_FETCH_TIMEOUT=180
 . ~/dotfiles/bash/bash-git-prompt/gitprompt.sh
 
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-[[ -s ~/.rvm/scripts/rvm ]] && source ~/.rvm/scripts/rvm  # This loads RVM into a shell session.
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-
-### Haskel paths
-# Built executables will be symlink'd into ~/Library/Haskell/bin
-export PATH="$HOME/Library/Haskell/bin:$PATH"
 # Built executables by the stack tool will be symlink'd into ~/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
-
-### Rust paths
-export PATH="$HOME/.cargo/bin:$PATH"
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" # For semantic lib code completion
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
