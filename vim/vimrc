@@ -14,6 +14,14 @@ Plugin 'thoughtbot/vim-rspec'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+
+
+
+call plug#begin()
+Plug 'elmcast/elm-vim'
+call plug#end()
+
+
 " https://github.com/stevenocchipinti/dotvim/blob/master/vimrc
 " CTRL-P PLUGIN
 let g:ctrlp_user_command = {
