@@ -6,6 +6,6 @@ export AWS_CLI=$aws_dir/aws
 export PATH=$aws_dir:$PATH
 
 
-dotfile_aws_docker_login_with_profile () { $(aws-vault exec $1 -- aws ecr get-login --no-include-email); }
+dotfile_aws_docker_login() { eval $(aws ecr get-login --no-include-email); }
 # usage alias aws-docker-login dev-admin
-alias aws-docker-login=dotfile_aws_docker_login_with_profile
+alias aws-docker-login=dotfile_aws_docker_login
