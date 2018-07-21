@@ -9,6 +9,9 @@
 . ~/dotfiles/bash/aws
 . ~/dotfiles/bash/docker
 
+# asdf version manager
+. ~/.asdf/asdf.sh
+. ~/.asdf/completions/asdf.bash
 
 ### PROMPT OPTIONS
 export GIT_PROMPT_THEME=Dima
@@ -16,9 +19,14 @@ export GIT_PROMPT_THEME=Dima
 export GIT_PROMPT_FETCH_TIMEOUT=180
 . ~/dotfiles/bash/bash-git-prompt/gitprompt.sh
 
+# Mongo
+export PATH="/usr/local/opt/mongodb@3.4/bin:$PATH"
 
 # Built executables by the stack tool will be symlink'd into ~/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

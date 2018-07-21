@@ -12,3 +12,5 @@ db/neo4j-*
 # OS generated files #
 ######################
 .DS_Store
+
+.tool-versions
