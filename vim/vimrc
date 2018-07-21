@@ -1,18 +1,37 @@
-set nocompatible                  " Must come first because it changes other options.
-
+" Vundle setup
+set nocompatible              " be iMproved, required
 filetype off                  " required
+
+" pathoget
+filetype off
+call pathogen#helptags()
+execute pathogen#infect()
+"silent! call pathogen#runtime_append_all_bundles()
+
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'vim-airline/vim-airline' " status line
 Plugin 'ctrlp.vim'
 Plugin 'thoughtbot/vim-rspec'
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
+" Plugin 'Valloric/YouCompleteMe'
 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+" Put your non-Plugin stuff after this line
 
 
 
@@ -35,11 +54,6 @@ map <leader><C-P> <C-P><C-\>w
 
 
 
-
-filetype off
-call pathogen#helptags()
-execute pathogen#infect()
-"silent! call pathogen#runtime_append_all_bundles()
 
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
@@ -87,16 +101,6 @@ set mouse=a                      " Allows to use mouse scrolling
 
 " GRB: clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
-
-
-
-set laststatus=2                  " Show the status line all the time
-" Useful status information at bottom of screen
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
-
-" Or use vividchalk
-colorscheme brogrammer
-
 
 " Has to be after colorscheme as it may override it
 " Highlight trailing whitespace, but not during insertion
@@ -237,23 +241,32 @@ function! RunRspecViaScriptTest()
   let g:rspec_command = "!script/test {spec}"
 endfunction
 
+function! RubyMode()
+  map <Leader>s :call RunCurrentSpecFile()<CR>
+  map <Leader>S :call RunNearestSpec()<CR>
 
-function! RustTesting()
-  map <Leader>s :! cargo test focus --color=always -- --color=always 2>&1 \| head -n 20<CR>
-  map <Leader>S :! cargo test --color=always -- --color=always 2>&1 \| head -n 20<CR>
+  " Quick way to switch between zeus/non-zeus. Consider rails Spring too
+  map <Leader>zr :call RunRspecViaBundle()<CR>
+  map <Leader>zz :call RunRspecViaZeus()<CR>
+  map <Leader>zt :call RunRspecViaScriptTest()<CR>
+
+  call RunRspecViaBundle()
 endfunction
 
-call RunRspecViaBundle()
-map <Leader>s :call RunCurrentSpecFile()<CR>
-map <Leader>S :call RunNearestSpec()<CR>
+function! RustMode()
+  map <Leader>s :! clear && cargo test focus --color=always -- --color=always 2>&1 \| head -n 20<CR>
+  map <Leader>S :! clear && cargo test --color=always -- --color=always 2>&1 \| head -n 20<CR>
+  nmap <Leader>r :! clear && cargo run<CR>
+endfunction
 
-" Quick way to switch between zeus/non-zeus. Consider rails Spring too
-map <Leader>zr :call RunRspecViaBundle()<CR>
-map <Leader>zz :call RunRspecViaZeus()<CR>
-map <Leader>zt :call RunRspecViaScriptTest()<CR>
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 
 
+call RubyMode() " Ruby mode by default
 
 
 
