@@ -15,7 +15,11 @@ Host jumpbox-development
 
 Host star-server
   Hostname 10.0.0.74
-  User murmur
+  User dmytrii.nagirniak
+
+Host ragdoll
+  Hostname ragdoll.app.development.cultureamp.net
+  User dmytrii.nagirniak
 
 # CultureAmp config
 Host star01prod.ca.aws app*.ca.aws playground.ca.aws backup01prod.ca.aws staging.ca.aws grumpycat.ca.aws lilbub.ca.aws aslan.ca.aws ragdoll.ca.aws ca-sandbox.ca.aws

@@ -237,6 +237,10 @@ function! RunRspecViaBundle()
   let g:rspec_command = "!bundle exec rspec --order defined {spec}"
 endfunction
 
+function! RunRspecViaBin()
+  let g:rspec_command = "!bin/rspec --order defined {spec}"
+endfunction
+
 function! RunRspecViaScriptTest()
   let g:rspec_command = "!script/test {spec}"
 endfunction
@@ -244,11 +248,6 @@ endfunction
 function! RubyMode()
   map <Leader>s :call RunCurrentSpecFile()<CR>
   map <Leader>S :call RunNearestSpec()<CR>
-
-  " Quick way to switch between zeus/non-zeus. Consider rails Spring too
-  map <Leader>zr :call RunRspecViaBundle()<CR>
-  map <Leader>zz :call RunRspecViaZeus()<CR>
-  map <Leader>zt :call RunRspecViaScriptTest()<CR>
 
   call RunRspecViaBundle()
 endfunction
