@@ -1,6 +1,8 @@
 [user]
 	name = Dmytrii Nagirniak
 	email = dnagir@gmail.com
+	signkey = 869C7BED69F09110
+	signingkey = 869C7BED69F09110
 [core]
 	filemode = true
 	excludesfile = ~/.gitignore_global
@@ -28,3 +30,5 @@
 	diff = always
 [push]
 	default = current
+[commit]
+	gpgsign = true

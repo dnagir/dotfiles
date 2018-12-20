@@ -12,6 +12,9 @@
 . ~/.asdf/asdf.sh
 . ~/.asdf/completions/asdf.bash
 
+# GPG
+export GPG_TTY=$(tty)
+
 ### PROMPT OPTIONS
 export GIT_PROMPT_THEME=Dima
 # Default - 5mins, change to 3hr (360mins)
