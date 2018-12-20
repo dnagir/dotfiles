@@ -22,7 +22,8 @@ Plugin 'vim-airline/vim-airline' " status line
 Plugin 'ctrlp.vim'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
+Plugin 'vim-syntastic/syntastic'
+" Plugin 'racer-rust/vim-racer'
 " Plugin 'Valloric/YouCompleteMe'
 
 
@@ -37,8 +38,21 @@ filetype plugin indent on    " required
 
 
 call plug#begin()
-Plug 'elmcast/elm-vim'
+Plug 'elmcast/elm-vim', { 'for': 'elm' }
 call plug#end()
+
+" Elm suggested
+let g:elm_setup_keybindings = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:elm_syntastic_show_warnings = 1
+" Elm settings
+let g:elm_jump_to_error = 1
+let g:elm_make_show_warnings = 1
+let g:elm_syntastic_show_warnings = 1
+let g:elm_detailed_complete = 1
+let g:elm_browser_command = 'open'
+let g:elm_format_autosave = 1
 
 
 " https://github.com/stevenocchipinti/dotvim/blob/master/vimrc
@@ -263,6 +277,7 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
+let g:rustfmt_autosave = 1
 
 
 call RubyMode() " Ruby mode by default

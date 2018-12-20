@@ -7,6 +7,8 @@ This is a Vim plugin that provides [Rust][r] file detection, syntax highlighting
 
 ## Installation
 
+Use one of the following package managers:
+
 * [Vim8 packages][vim8pack]:
   * `git clone https://github.com/rust-lang/rust.vim ~/.vim/pack/plugins/start/rust.vim`
 * [Vundle][v]:
@@ -68,6 +70,11 @@ If you set g:rust_clip_command RustPlay will copy the url to the clipboard.
 - Linux:
 
         let g:rust_clip_command = 'xclip -selection clipboard'
+
+### Running a test under cursor
+
+In cargo project, the `:RustTest` command will run a test under the cursor.
+This is useful when your project is bigger and running all tests take longer time.
 
 ## Help
 

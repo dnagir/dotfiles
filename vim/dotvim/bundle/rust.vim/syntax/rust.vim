@@ -21,9 +21,12 @@ syn keyword   rustStructure struct enum nextgroup=rustIdentifier skipwhite skipe
 syn keyword   rustUnion union nextgroup=rustIdentifier skipwhite skipempty contained
 syn match rustUnionContextual /\<union\_s\+\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*/ transparent contains=rustUnion
 syn keyword   rustOperator    as
+syn keyword   rustExistential existential nextgroup=rustTypedef skipwhite skipempty contained
+syn match rustExistentialContextual /\<existential\_s\+type/ transparent contains=rustExistential,rustTypedef
 
 syn match     rustAssert      "\<assert\(\w\)*!" contained
 syn match     rustPanic       "\<panic\(\w\)*!" contained
+syn keyword   rustKeyword     async
 syn keyword   rustKeyword     break
 syn keyword   rustKeyword     box nextgroup=rustBoxPlacement skipwhite skipempty
 syn keyword   rustKeyword     continue
@@ -228,6 +231,12 @@ if !exists("b:current_syntax_embed")
     syntax include @RustCodeInComment <sfile>:p:h/rust.vim
     unlet b:current_syntax_embed
 
+    " Currently regions marked as ```<some-other-syntax> will not get
+    " highlighted at all. In the future, we can do as vim-markdown does and
+    " highlight with the other syntax. But for now, let's make sure we find
+    " the closing block marker, because the rules below won't catch it.
+    syn region rustCommentLinesDocNonRustCode matchgroup=rustCommentDocCodeFence start='^\z(\s*//[!/]\s*```\).\+$' end='^\z1$' keepend contains=rustCommentLineDoc
+
     " We borrow the rules from rust’s src/librustdoc/html/markdown.rs, so that
     " we only highlight as Rust what it would perceive as Rust (almost; it’s
     " possible to trick it if you try hard, and indented code blocks aren’t
@@ -285,6 +294,7 @@ hi def link rustDynKeyword    rustKeyword
 hi def link rustTypedef       Keyword " More precise is Typedef, but it doesn't feel right for Rust
 hi def link rustStructure     Keyword " More precise is Structure
 hi def link rustUnion         rustStructure
+hi def link rustExistential   rustKeyword
 hi def link rustPubScopeDelim Delimiter
 hi def link rustPubScopeCrate rustKeyword
 hi def link rustSuper         rustKeyword

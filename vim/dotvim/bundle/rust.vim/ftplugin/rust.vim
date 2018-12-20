@@ -135,6 +135,9 @@ augroup rust.vim
     " See |:RustInfoToFile| for docs
     command! -bar -nargs=1 RustInfoToFile call rust#debugging#InfoToFile(<f-args>)
 
+    " See |:RustTest| for docs
+    command! -buffer -nargs=* -bang RustTest call rust#Test(<bang>0, <q-args>)
+
     if !exists("b:rust_last_rustc_args") || !exists("b:rust_last_args")
         let b:rust_last_rustc_args = []
         let b:rust_last_args = []
@@ -173,18 +176,18 @@ augroup rust.vim
                                     \|xunmap <buffer> ]]
                                     \|ounmap <buffer> [[
                                     \|ounmap <buffer> ]]
-                                    \|set matchpairs-=<:>
+                                    \|setlocal matchpairs-=<:>
                                     \|unlet b:match_skip
                                     \"
 
     " }}}1
 
     " Code formatting on save
-    autocmd BufWritePre *.rs silent! call rustfmt#PreWrite()
+    autocmd BufWritePre <buffer> silent! call rustfmt#PreWrite()
 
 augroup END
 
-set matchpairs+=<:>
+setlocal matchpairs+=<:>
 " For matchit.vim (rustArrow stops `Fn() -> X` messing things up)
 let b:match_skip = 's:comment\|string\|rustArrow'
 
