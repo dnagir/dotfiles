@@ -41,6 +41,13 @@ call plug#begin()
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 call plug#end()
 
+" Allow vim-terraform to override your .vimrc indentation syntax for matching files. Defaults to 0 which is off.
+let g:terraform_align=1
+
+" Allow vim-terraform to automatically format *.tf and *.tfvars files with terraform fmt. You can also do this manually with the :TerraformFmt command.
+let g:terraform_fmt_on_save=1
+
+
 " Elm suggested
 let g:elm_setup_keybindings = 0
 let g:syntastic_always_populate_loc_list = 1
