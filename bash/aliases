@@ -4,6 +4,8 @@ alias l='ls -CF'
 alias ll='ls -al'
 
 alias f='fg'
+alias tf='terraform'
+alias tfw='terraform workspace'
 
 # Ruby related
 alias b='bundle exec'
