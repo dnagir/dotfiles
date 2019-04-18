@@ -26,6 +26,8 @@
   dc=diff --cached
   p=push --all
   ca=commit -am
+  cv=commit -v
+  cav=commit -av
 [color]
 	diff = always
 [push]

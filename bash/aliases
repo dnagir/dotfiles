@@ -15,3 +15,5 @@ alias gpom='git pull origin master'
 alias z='zeus'
 
 alias st='open -a /Applications/SourceTree.app .'
+
+alias avr='aws-vault exec --assume-role-ttl=60m'
