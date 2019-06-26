@@ -2,6 +2,7 @@
 *.swp
 .idea/
 .byebug_history
+.vscode/
 
 # Logs and databases #
 ######################
