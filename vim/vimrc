@@ -23,6 +23,7 @@ Plugin 'ctrlp.vim'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'rust-lang/rust.vim'
 Plugin 'vim-syntastic/syntastic'
+" Plugin 'zxqfl/tabnine-vim'
 " Plugin 'racer-rust/vim-racer'
 " Plugin 'Valloric/YouCompleteMe'
 
