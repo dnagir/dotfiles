@@ -122,6 +122,7 @@ au BufWinLeave * call clearmatches()
 " map <leader>tl :tablast<cr>
 " map <leader>tm :tabmove
 
+let NERDTreeShowHidden=1
 nmap <leader>qq :NERDTree<cr>
 nmap <leader>qf :NERDTreeFind<cr>
 
