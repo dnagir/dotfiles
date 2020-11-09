@@ -3,6 +3,7 @@
 .idea/
 .byebug_history
 .vscode/
+tmp/
 
 # Logs and databases #
 ######################
