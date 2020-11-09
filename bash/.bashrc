@@ -16,6 +16,10 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ll='ls -al'
 
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
 alias s='git status'
 
 alias f='fg'
@@ -42,7 +46,6 @@ alias docker-stats-short='docker stats --format "table {{.Name}} {{.Container}}\
 ###############################################################################
 # Defaults for the apps                                                       #
 ###############################################################################
-export GREP_OPTIONS='--color=auto'
 export PSQL_EDITOR=vim
 export GPG_TTY=$(tty)
 export PATH="$HOME/.cargo/bin:$PATH"
