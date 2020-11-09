@@ -1,25 +1,60 @@
-" Author: Kevin Ballard
 " Description: Helper functions for Rust commands/mappings
 " Last Modified: May 27, 2014
 " For bugs, patches and license go to https://github.com/rust-lang/rust.vim
 
-" Jump {{{1
-
-function! rust#Load() 
+function! rust#Load()
     " Utility call to get this script loaded, for debugging
 endfunction
 
 function! rust#GetConfigVar(name, default)
     " Local buffer variable with same name takes predeence over global
-    if has_key(b:, a:name) 
+    if has_key(b:, a:name)
         return get(b:, a:name)
     endif
-    if has_key(g:, a:name) 
+    if has_key(g:, a:name)
         return get(g:, a:name)
     endif
     return a:default
 endfunction
 
+" Include expression {{{1
+
+function! rust#IncludeExpr(fname) abort
+    " Remove leading 'crate::' to deal with 2018 edition style 'use'
+    " statements
+    let l:fname = substitute(a:fname, '^crate::', '', '')
+
+    " Remove trailing colons arising from lines like
+    "
+    "     use foo::{Bar, Baz};
+    let l:fname = substitute(l:fname, ':\+$', '', '')
+
+    " Replace '::' with '/'
+    let l:fname = substitute(l:fname, '::', '/', 'g')
+
+    " When we have
+    "
+    "    use foo::bar::baz;
+    "
+    " we can't tell whether baz is a module or a function; and we can't tell
+    " which modules correspond to files.
+    "
+    " So we work our way up, trying
+    "
+    "     foo/bar/baz.rs
+    "     foo/bar.rs
+    "     foo.rs
+    while l:fname !=# '.'
+        let l:path = findfile(l:fname)
+        if !empty(l:path)
+            return l:fname
+        endif
+        let l:fname = fnamemodify(l:fname, ':h')
+    endwhile
+    return l:fname
+endfunction
+
+" Jump {{{1
 
 function! rust#Jump(mode, function) range
     let cnt = v:count1
@@ -360,10 +395,19 @@ function! s:RmDir(path)
         echoerr 'Attempted to delete empty path'
         return 0
     elseif a:path ==# '/' || a:path ==# $HOME
-        echoerr 'Attempted to delete protected path: ' . a:path
+        let l:path = expand(a:path)
+        if l:path ==# '/' || l:path ==# $HOME
+            echoerr 'Attempted to delete protected path: ' . a:path
+            return 0
+        endif
+    endif
+
+    if !isdirectory(a:path)
         return 0
     endif
-    return system("rm -rf " . shellescape(a:path))
+
+    " delete() returns 0 when removing file successfully
+    return delete(a:path, 'rf') == 0
 endfunction
 
 " Executes {cmd} with the cwd set to {pwd}, without changing Vim's cwd.
@@ -455,7 +499,15 @@ function! s:SearchTestFunctionNameUnderCursor() abort
 
     " Search the end of test function (closing brace) to ensure that the
     " cursor position is within function definition
-    normal! %
+    if maparg('<Plug>(MatchitNormalForward)') ==# ''
+        keepjumps normal! %
+    else
+        " Prefer matchit.vim official plugin to native % since the plugin
+        " provides better behavior than original % (#391)
+        " To load the plugin, run:
+        "   :packadd matchit
+        execute 'keepjumps' 'normal' "\<Plug>(MatchitNormalForward)"
+    endif
     if line('.') < cursor_line
         return ''
     endif
@@ -463,32 +515,54 @@ function! s:SearchTestFunctionNameUnderCursor() abort
     return matchstr(getline(test_func_line), '\m\C^\s*fn\s\+\zs\h\w*')
 endfunction
 
-function! rust#Test(all, options) abort
+function! rust#Test(mods, winsize, all, options) abort
     let manifest = findfile('Cargo.toml', expand('%:p:h') . ';')
     if manifest ==# ''
         return rust#Run(1, '--test ' . a:options)
     endif
-    let manifest = shellescape(manifest)
+
+    " <count> defaults to 0, but we prefer an empty string
+    let winsize = a:winsize ? a:winsize : ''
+
+    if has('terminal')
+        if has('patch-8.0.910')
+            let cmd = printf('%s noautocmd %snew | terminal ++curwin ', a:mods, winsize)
+        else
+            let cmd = printf('%s terminal ', a:mods)
+        endif
+    elseif has('nvim')
+        let cmd = printf('%s noautocmd %snew | terminal ', a:mods, winsize)
+    else
+        let cmd = '!'
+        let manifest = shellescape(manifest)
+    endif
 
     if a:all
-        execute '!cargo test --manifest-path' manifest a:options
+        if a:options ==# ''
+            execute cmd . 'cargo test --manifest-path' manifest
+        else
+            execute cmd . 'cargo test --manifest-path' manifest a:options
+        endif
         return
     endif
 
     let saved = getpos('.')
     try
         let func_name = s:SearchTestFunctionNameUnderCursor()
-        if func_name ==# ''
-            echohl ErrorMsg
-            echo 'No test function was found under the cursor. Please add ! to command if you want to run all tests'
-            echohl None
-            return
-        endif
-        execute '!cargo test --manifest-path' manifest func_name a:options
-        return
     finally
         call setpos('.', saved)
     endtry
+    if func_name ==# ''
+        echohl ErrorMsg
+        echomsg 'No test function was found under the cursor. Please add ! to command if you want to run all tests'
+        echohl None
+        return
+    endif
+    if a:options ==# ''
+        execute cmd . 'cargo test --manifest-path' manifest func_name
+    else
+        execute cmd . 'cargo test --manifest-path' manifest func_name a:options
+    endif
 endfunction
 
 " }}}1
