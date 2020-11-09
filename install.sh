@@ -3,8 +3,10 @@ ln -sf ~/dotfiles/vim/vimrc ~/.vimrc
 ln -sf ~/dotfiles/vim/gvimrc ~/.gvimrc
 ln -sf ~/dotfiles/vim/dotvim ~/.vim
 
-ln -sf ~/dotfiles/bash/bashrc ~/.bashrc
-echo ". ~/.bashrc # this file will be overwritten on next install" > ~/.bash_profile
+
+bashrcIncludeString="source ~/dotfiles/bash/bashrc"
+grep -qxF "$bashrcIncludeString" ~/.bashrc || echo "$bashrcIncludeString" >> ~/.bashrc
+
 ln -sf ~/dotfiles/bash/inputrc ~/.inputrc
 
 ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig

@@ -1,8 +1,0 @@
-
-complete -C aws_completer aws
-
-dotfile_aws_docker_login() { eval $(aws ecr get-login --no-include-email); }
-# usage alias aws-docker-login dev-admin
-alias aws-docker-login=dotfile_aws_docker_login
-
-alias cf="aws cloudformation"
