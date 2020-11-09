@@ -27,3 +27,5 @@
 	default = current
 [commit]
 	gpgsign = true
+[pull]
+	ff = only
