@@ -1,6 +1,7 @@
 Host *
   ForwardAgent yes
   ServerAliveInterval 30
+  AddKeysToAgent yes
 
 # SSH over Session Manager
 Host i-* mi-*
