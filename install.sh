@@ -6,6 +6,10 @@ bashrcIncludeString="source $HOME/dotfiles/bash/.bashrc"
 grep -qxF "$bashrcIncludeString" $HOME/.bashrc || echo "$bashrcIncludeString" >>$HOME/.bashrc
 ln -sf $HOME/dotfiles/bash/.inputrc $HOME/.inputrc
 
+echo >&2 "Installing zsh config"
+zshrcIncludeString="source $HOME/dotfiles/zsh/.zshrc"
+grep -qxF "$zshrcIncludeString" $HOME/.zshrc || echo "$zshrcIncludeString" >>$HOME/.zshrc
+
 
 echo >&2 "Installing git config"
 ln -sf $HOME/dotfiles/git/.gitconfig $HOME/.gitconfig
