@@ -144,8 +144,8 @@ nmap <leader>d :bprevious<CR>:bdelete #<CR>
 nmap <leader>w :w<cr>
 
 " Easier copy-paste to system clipboard:
-vmap <leader>y "*y
-map <leader>p "*p
+vmap <leader>y "+y
+map <leader>p "+gp
 
 " INSERT mode mappings.
 :imap jj <Esc>
