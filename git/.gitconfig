@@ -21,6 +21,7 @@
   ca=commit -am
   cv=commit -v
   cav=commit -av
+  recent=log --oneline -n10
 [color]
 	diff = always
 [push]
