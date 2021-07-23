@@ -2,12 +2,18 @@
 set -euo pipefail
 
 echo >&2 "Installing bash config"
-bashrcIncludeString="source $HOME/dotfiles/bash/.bashrc"
+bashrcIncludeString="source $HOME/dotfiles/shell/.bashrc"
 grep -qxF "$bashrcIncludeString" $HOME/.bashrc || echo "$bashrcIncludeString" >>$HOME/.bashrc
-ln -sf $HOME/dotfiles/bash/.inputrc $HOME/.inputrc
+ln -sf $HOME/dotfiles/shell/.inputrc $HOME/.inputrc
 
 echo >&2 "Installing zsh config"
-zshrcIncludeString="source $HOME/dotfiles/zsh/.zshrc"
+if [ ! -d "$HOME/.oh-my-zsh" ]
+then
+    git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
+else
+    (cd $HOME/.oh-my-zsh && git pull)
+fi
+zshrcIncludeString="source $HOME/dotfiles/shell/.zshrc"
 grep -qxF "$zshrcIncludeString" $HOME/.zshrc || echo "$zshrcIncludeString" >>$HOME/.zshrc
 
 

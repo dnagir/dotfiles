@@ -8,7 +8,7 @@ export HISTSIZE=10000
 # Append to the history file when exiting instead of overwriting it
 shopt -s histappend
 
-source $HOME/dotfiles/bash/aliases.sh
+source $HOME/dotfiles/shell/aliases.sh
 
 
 ###############################################################################
@@ -38,8 +38,8 @@ fi
 export GIT_PROMPT_THEME=Dima
 # Default - 5mins, change to 3hr (360mins)
 export GIT_PROMPT_FETCH_TIMEOUT=180
-. ~/dotfiles/bash/bash-git-prompt/gitprompt.sh
-. ~/dotfiles/bash/git-completion.bash
+. ~/dotfiles/shell/bash-git-prompt/gitprompt.sh
+. ~/dotfiles/shell/git-completion.bash
 
 
 ###############################################################################
