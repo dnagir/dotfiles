@@ -10,8 +10,6 @@ echo >&2 "Installing zsh config"
 if [ ! -d "$HOME/.oh-my-zsh" ]
 then
     git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
-else
-    (cd $HOME/.oh-my-zsh && git pull)
 fi
 zshrcIncludeString="source $HOME/dotfiles/shell/.zshrc"
 grep -qxF "$zshrcIncludeString" $HOME/.zshrc || echo "$zshrcIncludeString" >>$HOME/.zshrc
