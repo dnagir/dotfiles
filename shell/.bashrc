@@ -8,16 +8,10 @@ export HISTSIZE=10000
 # Append to the history file when exiting instead of overwriting it
 shopt -s histappend
 
+source $HOME/dotfiles/shell/.shellrc
 source $HOME/dotfiles/shell/aliases.sh
 
 
-###############################################################################
-# Defaults for the apps                                                       #
-###############################################################################
-export PSQL_EDITOR=vim
-export GPG_TTY=$(tty)
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
 
 ###############################################################################
 # AWS                                                                         #
@@ -40,8 +34,3 @@ export GIT_PROMPT_THEME=Dima
 export GIT_PROMPT_FETCH_TIMEOUT=180
 . ~/dotfiles/shell/bash-git-prompt/gitprompt.sh
 . ~/dotfiles/shell/git-completion.bash
-
-
-###############################################################################
-# Everything else...                                                          #
-###############################################################################

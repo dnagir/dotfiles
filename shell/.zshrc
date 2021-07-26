@@ -1,4 +1,5 @@
-# Use the same aliases as bash
+# Share some of the same setup with bash
+source $HOME/dotfiles/shell/.shellrc
 source $HOME/dotfiles/shell/aliases.sh
 
 ######################################################################

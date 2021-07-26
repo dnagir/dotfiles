@@ -1,0 +1,8 @@
+###############################################################################
+# Defaults for the apps                                                       #
+###############################################################################
+export PSQL_EDITOR=vim
+export GPG_TTY=$(tty)
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+
