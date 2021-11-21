@@ -18,6 +18,7 @@ grep -qxF "$zshrcIncludeString" $HOME/.zshrc || echo "$zshrcIncludeString" >>$HO
 echo >&2 "Installing git config"
 ln -sf $HOME/dotfiles/git/.gitconfig $HOME/.gitconfig
 ln -sf $HOME/dotfiles/git/.gitignore_global $HOME/.gitignore_global
+ln -sf $HOME/dotfiles/git/.gitattributes_global $HOME/.gitattributes_global
 
 echo >&2 "Installing SSH config"
 ln -sf $HOME/dotfiles/ssh/config $HOME/.ssh/config
