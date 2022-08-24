@@ -1,1 +1,1 @@
-/home/dima/dotfiles/vim/.vim
+/Users/dima/dotfiles/vim/.vim

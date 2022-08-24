@@ -10,7 +10,7 @@ source $HOME/dotfiles/shell/aliases.sh
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Candidates: kphoen, refined, re5et
+# Candidates: kphoen, refined, re5et, jonathan
 ZSH_THEME="random"
 
 plugins=(
