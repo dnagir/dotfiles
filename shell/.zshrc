@@ -28,3 +28,9 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 VI_MODE_SET_CURSOR=true
 
 source $ZSH/oh-my-zsh.sh
+
+
+# Increase the size of history file.
+export HISTSIZE=1000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
