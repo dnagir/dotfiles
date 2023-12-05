@@ -1,6 +1,4 @@
-alias ll='ls -l'
 alias la='ls -A'
-alias l='ls -CF'
 alias ll='ls -al'
 
 alias grep="grep --color=auto"
@@ -12,6 +10,7 @@ alias s='git status'
 alias f='fg'
 alias tf='terraform'
 alias tfw='terraform workspace'
+alias n='nvim'
 
 ##### Ruby
 alias b='bundle exec'
