@@ -31,3 +31,8 @@ ln -sf $HOME/dotfiles/vim/.vimrc $HOME/.vimrc
 ln -sf $HOME/dotfiles/vim/.vim $HOME/.vim
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim || echo "Vundle probably already exists"
 vim +PluginInstall +qall
+
+
+echo >&2 "Installing NeoVim config"
+mkdir -p $HOME/.config
+ln -sf $HOME/dotfiles/nvim $HOME/.config
