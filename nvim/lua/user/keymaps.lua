@@ -35,6 +35,7 @@ nmap("<leader>d", ":bprevious<CR>:bdelete #<CR>")
 nmap("<leader>w", ":w<CR>")
 nmap("<leader>c", ":close<CR>")
 nmap(";", ":") -- Avoid using Shift to get to command.
+nmap("<leader>h", ":e %:h<CR>") -- Open directory of the current file.
 
 -- Easier copy-paste to system clipboard.
 map("<leader>y", '"+y')
@@ -51,7 +52,6 @@ nmap('<space>q', vim.diagnostic.setloclist)
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 local function map_buffer(buf)
   local opts = { buffer = buf }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
@@ -62,7 +62,7 @@ local function map_buffer(buf)
   --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   -- end, opts)
   vim.keymap.set('n', '<space>d', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
   vim.keymap.set({ 'n', 'v' }, '<space>a', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
   vim.keymap.set('n', '<space>f', function()
@@ -72,10 +72,22 @@ end
 
 local function map_telescope()
   telescope_builtin = require('telescope.builtin')
-  nmap('<leader>f', telescope_builtin.find_files)
-  nmap('<leader>g', telescope_builtin.live_grep)
   nmap('<leader><leader>', telescope_builtin.buffers)
+
+  nmap('<leader>fo', telescope_builtin.oldfiles)
+  nmap('<leader>ff', telescope_builtin.find_files)
+  nmap('<leader>fd', function()
+    -- Find files from the current file's directory.
+    telescope_builtin.find_files({cwd = vim.fn.expand('%:h')})
+  end)
+  nmap('<leader>fm', telescope_builtin.marks)
+  nmap('<leader>fq', telescope_builtin.quickfix)
+  nmap('<leader>f<leader>', telescope_builtin.builtin) -- Run a built-in Telescope command.
   nmap('<leader>fh', telescope_builtin.help_tags)
+
+  nmap('<leader>gl', telescope_builtin.live_grep)
+  nmap('<leader>gs', telescope_builtin.grep_string)
+  nmap('<leader>gb', telescope_builtin.current_buffer_fuzzy_find)
 end
 
 local function build_cmp_mapping()
