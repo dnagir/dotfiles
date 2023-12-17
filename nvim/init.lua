@@ -57,11 +57,21 @@ require("lazy").setup({
   },
 
   "lewis6991/gitsigns.nvim",
+  "williamboman/mason.nvim",
+
+  -- Remember the last position in a file.
+  {
+    "vladdoster/remember.nvim",
+    config = function()
+      require("remember")
+    end,
+  },
 })
 
 
 vim.cmd "colorscheme slate"
 
+require("mason").setup()
 require "user.options"
 require "user.telescope"
 require "user.treesitter"
