@@ -70,22 +70,24 @@ local function map_buffer(buf)
   end, opts)
 end
 
-local function map_telescope()
-  telescope_builtin = require('telescope.builtin')
+local function map_telescope(setup)
+  local telescope_builtin = require('telescope.builtin')
   nmap('<leader><leader>', telescope_builtin.buffers)
 
   nmap('<leader>fo', telescope_builtin.oldfiles)
   nmap('<leader>ff', telescope_builtin.find_files)
   nmap('<leader>fd', function()
     -- Find files from the current file's directory.
-    telescope_builtin.find_files({cwd = vim.fn.expand('%:h')})
+    telescope_builtin.find_files({ cwd = vim.fn.expand('%:h') })
   end)
   nmap('<leader>fm', telescope_builtin.marks)
   nmap('<leader>fq', telescope_builtin.quickfix)
   nmap('<leader>f<leader>', telescope_builtin.builtin) -- Run a built-in Telescope command.
   nmap('<leader>fh', telescope_builtin.help_tags)
+  nmap('<leader>fr', telescope_builtin.resume)
 
   nmap('<leader>gl', telescope_builtin.live_grep)
+  nmap('<leader>gg', setup.live_grep_with_glob)
   nmap('<leader>gs', telescope_builtin.grep_string)
   nmap('<leader>gb', telescope_builtin.current_buffer_fuzzy_find)
 end

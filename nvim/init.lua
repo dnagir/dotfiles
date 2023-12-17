@@ -73,7 +73,7 @@ vim.cmd "colorscheme slate"
 
 require("mason").setup()
 require "user.options"
-require "user.telescope"
+local telescop_setup = require("user.telescope")
 require "user.treesitter"
 require "user.gitsigns"
 local cmp = require "user.cmp"
@@ -83,7 +83,7 @@ local keymaps = require("user.keymaps")
 --------------------------------------------------------------------------------
 -- Link everything up together.
 --------------------------------------------------------------------------------
-keymaps.map_telescope()
+keymaps.map_telescope(telescop_setup)
 cmp.setup(keymaps.build_cmp_mapping(cmp.mapping))
 lsp.setup(cmp.capabilities, keymaps.map_buffer)
 
