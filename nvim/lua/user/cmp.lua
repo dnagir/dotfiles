@@ -58,7 +58,7 @@ end
 return {
   -- Set up lspconfig.
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  mapping = cmp.mapping,
 
   setup = setup,
 }
-

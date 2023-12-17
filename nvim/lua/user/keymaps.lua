@@ -6,14 +6,6 @@ local function imap(mapTo, mapFrom)
   vim.keymap.set("i", mapTo, mapFrom, { noremap = true, silent = true })
 end
 
-local function vmap(mapTo, mapFrom)
-  vim.keymap.set("v", mapTo, mapFrom, { noremap = true, silent = true })
-end
-
-local function xmap(mapTo, mapFrom)
-  vim.keymap.set("x", mapTo, mapFrom, { noremap = true, silent = true })
-end
-
 local function map(mapTo, mapFrom)
   vim.keymap.set("", mapTo, mapFrom, { noremap = true, silent = true })
 end
@@ -92,8 +84,7 @@ local function map_telescope(setup)
   nmap('<leader>gb', telescope_builtin.current_buffer_fuzzy_find)
 end
 
-local function build_cmp_mapping()
-  cmp_mapping = require("cmp").mapping
+local function build_cmp_mapping(cmp_mapping)
   return {
     ['<C-b>'] = cmp_mapping.scroll_docs(-4),
     ['<C-f>'] = cmp_mapping.scroll_docs(4),
