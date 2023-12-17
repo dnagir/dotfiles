@@ -85,7 +85,4 @@ local keymaps = require("user.keymaps")
 --------------------------------------------------------------------------------
 keymaps.map_telescope(telescop_setup)
 cmp.setup(keymaps.build_cmp_mapping(cmp.mapping))
-lsp.setup(cmp.capabilities, keymaps.map_buffer)
-
--- Default the bindings to the Go mode.
-keymaps.mode.go()
+lsp.setup(cmp.capabilities, keymaps.map_buffer, keymaps.modes)

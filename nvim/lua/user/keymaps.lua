@@ -103,11 +103,6 @@ local function build_cmp_mapping()
   }
 end
 
-local function go_mode()
-  nmap("<leader>a", ":GoAlt<cr>")
-  nmap("<leader>s", ":GoTestPkg<cr>")
-end
-
 return {
   -- Should be called to map buffer specific items when LSP is attached.
   map_buffer = map_buffer,
@@ -115,8 +110,10 @@ return {
   map_telescope = map_telescope,
   build_cmp_mapping = build_cmp_mapping,
 
-  -- use manually to set common bindings
-  mode = {
-    go = go_mode,
+  modes = {
+    gopls = function()
+      nmap("<leader>a", ":GoAlt<cr>")
+      nmap("<leader>s", ":GoTestPkg<cr>")
+    end
   },
 }
