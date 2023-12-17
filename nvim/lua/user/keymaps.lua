@@ -18,6 +18,7 @@ vim.g.maplocalleader = ","
 -- Easier to quote insert mode.
 imap("jj", "<Esc>")
 imap("kk", "<Esc>")
+nmap("<leader>/", ":nohlsearch<CR>")
 
 
 -- :bd will close buffer + window
@@ -26,7 +27,7 @@ imap("kk", "<Esc>")
 nmap("<leader>d", ":bprevious<CR>:bdelete #<CR>")
 nmap("<leader>w", ":w<CR>")
 nmap("<leader>c", ":close<CR>")
-nmap(";", ":") -- Avoid using Shift to get to command.
+nmap(";", ":")                  -- Avoid using Shift to get to command.
 nmap("<leader>h", ":e %:h<CR>") -- Open directory of the current file.
 
 -- Easier copy-paste to system clipboard.
