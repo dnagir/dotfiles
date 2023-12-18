@@ -108,9 +108,9 @@ local function set_mode(client_id, modes)
     return
   end
   local client = vim.lsp.get_client_by_id(client_id)
-  local set_mode = modes[client.name]
-  if set_mode ~= nil then
-    set_mode()
+  local set = modes[client.name]
+  if set ~= nil then
+    set()
     mode_is_set = true
   end
 end

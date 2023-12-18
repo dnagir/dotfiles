@@ -95,17 +95,47 @@ local function build_cmp_mapping(cmp_mapping)
   }
 end
 
+local function map_neotest()
+  nmap("<leader>tt", function()
+    require('neotest').run.run()
+  end)
+
+  nmap("<leader>tl", function()
+    require('neotest').run.run_last()
+  end)
+
+  nmap("<leader>ts", function()
+    require('neotest').summary.open()
+  end)
+end
+
 return {
   -- Should be called to map buffer specific items when LSP is attached.
   map_buffer = map_buffer,
 
   map_telescope = map_telescope,
   build_cmp_mapping = build_cmp_mapping,
+  map_neotest = map_neotest,
 
+  -- The mode with the LSP name will be called when LSP is attached.
   modes = {
     gopls = function()
       nmap("<leader>a", ":GoAlt<cr>")
-      nmap("<leader>s", ":GoTestPkg<cr>")
+
+      nmap("<leader>ta", function()
+        require('neotest').run.run({ suite = true, extra_args = { "-short" } })
+      end)
+
+      nmap("<leader>tf", function()
+        require('neotest').run.run({ vim.fn.expand("%"), extra_args = { "-short" } })
+      end)
+    end,
+
+
+    rust_analyzer = function()
+      nmap("<leader>ta", function()
+        require('neotest').run.run({ suite = true })
+      end)
     end
   },
 }

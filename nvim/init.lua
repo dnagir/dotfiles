@@ -70,9 +70,18 @@ require("lazy").setup({
     "nvim-tree/nvim-tree.lua",
     version = "*",
     lazy = false,
-  }
-})
+  },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
 
+      "nvim-neotest/neotest-go",
+      "rouge8/neotest-rust",
+    }
+  },
+})
 
 vim.cmd "colorscheme slate"
 
@@ -82,6 +91,7 @@ local telescop_setup = require("user.telescope")
 require "user.treesitter"
 require "user.gitsigns"
 require "user.nvim-tree"
+require "user.neotest"
 local cmp = require "user.cmp"
 local lsp = require("user.lsp")
 local keymaps = require("user.keymaps")
@@ -90,5 +100,6 @@ local keymaps = require("user.keymaps")
 -- Link everything up together.
 --------------------------------------------------------------------------------
 keymaps.map_telescope(telescop_setup)
+keymaps.map_neotest()
 cmp.setup(keymaps.build_cmp_mapping(cmp.mapping))
 lsp.setup(cmp.capabilities, keymaps.map_buffer, keymaps.modes)
