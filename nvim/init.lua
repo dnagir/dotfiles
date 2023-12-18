@@ -66,6 +66,11 @@ require("lazy").setup({
       require("remember")
     end,
   },
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+  }
 })
 
 
@@ -76,6 +81,7 @@ require "user.options"
 local telescop_setup = require("user.telescope")
 require "user.treesitter"
 require "user.gitsigns"
+require "user.nvim-tree"
 local cmp = require "user.cmp"
 local lsp = require("user.lsp")
 local keymaps = require("user.keymaps")
