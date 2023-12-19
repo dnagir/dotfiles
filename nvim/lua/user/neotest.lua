@@ -1,4 +1,5 @@
-require("neotest").setup({
+local neotest = require("neotest")
+neotest.setup({
   adapters = {
     require("neotest-go")({
       args = { "-count=1", "-timeout=60s" }
@@ -104,3 +105,18 @@ require("neotest").setup({
     enabled = true,
   }
 })
+
+
+local tools = require('user.tools')
+tools.nmap("<leader>tt", function()
+  neotest.run.run()
+end)
+tools.nmap("<leader>t<leader>", function()
+  neotest.run.run_last()
+end)
+tools.nmap("<leader>ts", function()
+  neotest.summary.open({ enter = true })
+end)
+tools.nmap("<leader>to", function()
+  neotest.output.open({ enter = true })
+end)

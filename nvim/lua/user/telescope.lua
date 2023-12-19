@@ -37,23 +37,6 @@ telescope.setup({
 })
 
 
-
---require('telescope').setup {
---  defaults = {
---    --file_ignore_patterns = {
---    --  '.git/',
---    --  'vendor/',       -- Go
---    --  'target/',       -- Rust
---    --  'node_modules/', -- JavaScript
---    --},
---    pickers = {
---      find_files = {
---        hidden = true,
---      },
---    },
---  },
---}
-
 local session = {
   live_grep_glob = "**/*.",
   live_grep_default_text = "",
@@ -87,6 +70,24 @@ local function live_grep_with_glob()
   end)
 end
 
-return {
-  live_grep_with_glob = live_grep_with_glob,
-}
+
+local tools = require('user.tools')
+local telescope_builtin = require('telescope.builtin')
+tools.nmap('<leader><leader>', telescope_builtin.buffers)
+
+tools.nmap('<leader>fo', telescope_builtin.oldfiles)
+tools.nmap('<leader>ff', telescope_builtin.find_files)
+tools.nmap('<leader>fd', function()
+  -- Find files from the current file's directory.
+  telescope_builtin.find_files({ cwd = vim.fn.expand('%:h') })
+end)
+tools.nmap('<leader>fm', telescope_builtin.marks)
+tools.nmap('<leader>fq', telescope_builtin.quickfix)
+tools.nmap('<leader>f<leader>', telescope_builtin.builtin) -- Run a built-in Telescope command.
+tools.nmap('<leader>fh', telescope_builtin.help_tags)
+tools.nmap('<leader>fr', telescope_builtin.resume)
+tools.nmap('<leader>fb', telescope_builtin.current_buffer_fuzzy_find)
+
+tools.nmap('<leader>fgl', telescope_builtin.live_grep)
+tools.nmap('<leader>fgg', live_grep_with_glob)
+tools.nmap('<leader>fgs', telescope_builtin.grep_string)

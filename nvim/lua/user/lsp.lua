@@ -100,24 +100,25 @@ local function setup_lua(lspconfig)
   }
 end
 
-local mode_is_set = false
-
--- set the mode based on the first buffer that is open
-local function set_mode(client_id, modes)
-  if mode_is_set then
-    return
-  end
-  local client = vim.lsp.get_client_by_id(client_id)
-  local set = modes[client.name]
-  if set ~= nil then
-    set()
-    mode_is_set = true
-  end
+-- Buffer local mappings.
+-- See `:help vim.lsp.*` for documentation on any of the below functions
+local function map_buffer(buf)
+  local opts = { buffer = buf }
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+  vim.keymap.set('n', '<space>d', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
+  vim.keymap.set({ 'n', 'v' }, '<space>a', vim.lsp.buf.code_action, opts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', '<space>f', function()
+    vim.lsp.buf.format { async = true }
+  end, opts)
 end
 
 -- setup uses capabilities to setup the lspconfig and
--- call map_buffer on LspAttach.
-local function setup(capabilities, map_buffer, modes)
+local function setup(capabilities, modes)
   local lspconfig = require('lspconfig')
   setup_lua(lspconfig)
   setup_go(lspconfig, capabilities)
@@ -132,7 +133,6 @@ local function setup(capabilities, map_buffer, modes)
       -- Enable completion triggered by <c-x><c-o>
       vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
       map_buffer(ev.buf)
-      set_mode(ev.data.client_id, modes)
     end
   })
 end
