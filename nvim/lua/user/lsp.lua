@@ -100,22 +100,33 @@ local function setup_lua(lspconfig)
   }
 end
 
+local tools = require('user.tools')
+
 -- Buffer local mappings.
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 local function map_buffer(buf)
   local opts = { buffer = buf }
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-  vim.keymap.set('n', '<space>d', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
-  vim.keymap.set({ 'n', 'v' }, '<space>a', vim.lsp.buf.code_action, opts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  vim.keymap.set('n', '<space>f', function()
+  tools.nmap('lgd', vim.lsp.buf.definition, { buffer = buf, desc = 'LSP: definition' })
+  tools.nmap('lgt', vim.lsp.buf.type_definition, { buffer = buf, desc = 'LSP: type_definition' })
+  tools.nmap('lgr', vim.lsp.buf.references, { buffer = buf, desc = 'LSP: references' })
+  tools.nmap('lgi', vim.lsp.buf.implementation, { buffer = buf, desc = 'LSP: implementation' })
+
+  tools.nmap('lhk', vim.lsp.buf.hover, { buffer = buf, desc = 'LSP: hover' })
+  tools.nmap('lhs', vim.lsp.buf.signature_help, { buffer = buf, desc = 'LSP: signature_help' })
+
+  tools.nmap('lr', vim.lsp.buf.rename, { buffer = buf, desc = 'LSP: rename' })
+
+  tools.nvmap('l.', vim.lsp.buf.code_action, { buffer = buf, desc = 'LSP: code_action' })
+  tools.nmap('lf', function()
     vim.lsp.buf.format { async = true }
-  end, opts)
+  end, { buffer = buf, desc = 'LSP: format' })
 end
+
+-- Global LSP mappings.
+tools.nmap('<space>e', vim.diagnostic.open_float, { desc = "Diagnostic: open float" })
+tools.nmap('<space>k', vim.diagnostic.goto_prev, { desc = "Diagnostic: next" })
+tools.nmap('<space>j', vim.diagnostic.goto_next, { desc = "Diagnostic: previous" })
+tools.nmap('<space>q', vim.diagnostic.setloclist, { desc = "Diagnostic: send to localist" })
 
 -- setup uses capabilities to setup the lspconfig and
 local function setup(capabilities, modes)

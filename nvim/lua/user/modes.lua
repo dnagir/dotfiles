@@ -2,20 +2,21 @@ local tools = require('user.tools')
 local neotest = require('neotest')
 
 local function gopls()
-  tools.nmap("<leader>a", ":GoAlt<cr>")
+  tools.nmap("<leader>a", ":GoAlt<cr>", { desc = 'Go alternative file' })
   tools.nmap("<leader>ta", function()
     neotest.run.run({ suite = true, extra_args = { "-short" } })
-  end)
+  end, { desc = 'Run all tests (short mode)' })
   tools.nmap("<leader>tf", function()
     neotest.run.run({ vim.fn.expand("%"), extra_args = { "-short" } })
-  end)
-  tools.nmap("<leader>tr", ':lua =require("neotest").run.run({ vim.fn.expand("%:h"), extra_args = { "-short" } })')
+  end, { desc = 'Run tests in current file (short)' })
+  tools.nmap("<leader>tr", ':lua =require("neotest").run.run({ vim.fn.expand("%:h"), extra_args = { "-short" } })',
+    { desc = 'Open Go run test command...' })
 end
 
 local function rust_analyzer()
   tools.nmap("<leader>ta", function()
     neotest.run.run({ suite = true })
-  end)
+  end, { desc = 'Run all tests' })
 end
 
 local current_mode = nil

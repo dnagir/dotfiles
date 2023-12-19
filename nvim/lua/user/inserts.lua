@@ -13,7 +13,7 @@ local function insert_uuid()
   vim.api.nvim_set_current_line(nline)
 end
 
-tools.imap('<leader>uuid', insert_uuid)
+tools.imap('<leader>uuid', insert_uuid, { desc = 'Insert UUID' })
 
 return {
   insert_uuid = insert_uuid,

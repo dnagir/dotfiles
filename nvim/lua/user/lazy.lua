@@ -19,7 +19,11 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
-  "folke/which-key.nvim",
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {}
+  },
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
 
