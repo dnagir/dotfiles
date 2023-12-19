@@ -24,7 +24,7 @@
   cav=commit -av
   recent=log --oneline -n15
 [color]
-	diff = always
+	diff = auto
 [push]
 	default = current
 [commit]
