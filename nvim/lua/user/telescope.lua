@@ -1,33 +1,58 @@
-require('telescope').setup {
+local telescope = require("telescope")
+local telescopeConfig = require("telescope.config")
+
+-- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#file-and-text-search-in-hidden-files-and-directories
+local function hidden_files_vimgrep_arguments()
+  -- Clone the default Telescope configuration
+  local opts = { unpack(telescopeConfig.values.vimgrep_arguments) }
+
+  -- I want to search in hidden/dot files.
+  table.insert(opts, "--hidden")
+  -- I don't want to search in the `.git` directory.
+  table.insert(opts, "--glob")
+  table.insert(opts, "!**/.git/*")
+  return opts
+end
+
+local function hidden_files_find_command()
+  return { "rg", "--files", "--hidden", "--glob", "!**/.git/*" }
+end
+
+telescope.setup({
   defaults = {
-    -- Default configuration for telescope goes here:
-    -- config_key = value,
-    mappings = {
-      i = {
-        -- map actions.which_key to <C-h> (default: <C-/>)
-        -- actions.which_key shows the mappings for your picker,
-        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-        ["<C-h>"] = "which_key"
-      }
-    }
+    file_ignore_patterns = {
+      '.git/',
+      --'vendor/',       -- Go
+      'target/',       -- Rust
+      'node_modules/', -- JavaScript
+    },
+    -- `hidden = true` is not supported in text grep commands.
+    vimgrep_arguments = hidden_files_vimgrep_arguments(),
   },
   pickers = {
-    -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
+    find_files = {
+      find_command = hidden_files_find_command(),
+    },
   },
-  extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
-  }
-}
+})
+
+
+
+--require('telescope').setup {
+--  defaults = {
+--    --file_ignore_patterns = {
+--    --  '.git/',
+--    --  'vendor/',       -- Go
+--    --  'target/',       -- Rust
+--    --  'node_modules/', -- JavaScript
+--    --},
+--    pickers = {
+--      find_files = {
+--        hidden = true,
+--      },
+--    },
+--  },
+--}
 
 local session = {
   live_grep_glob = "**/*.",

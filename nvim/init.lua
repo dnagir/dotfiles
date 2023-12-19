@@ -96,10 +96,13 @@ local cmp = require "user.cmp"
 local lsp = require("user.lsp")
 local keymaps = require("user.keymaps")
 
+require "user.inserts"
+
 --------------------------------------------------------------------------------
 -- Link everything up together.
 --------------------------------------------------------------------------------
 keymaps.map_telescope(telescop_setup)
 keymaps.map_neotest()
+keymaps.map_gitsigns()
 cmp.setup(keymaps.build_cmp_mapping(cmp.mapping))
 lsp.setup(cmp.capabilities, keymaps.map_buffer, keymaps.modes)

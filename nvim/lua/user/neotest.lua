@@ -26,17 +26,18 @@ require("neotest").setup({
     child_prefix = "├",
     collapsed = "─",
     expanded = "╮",
-    failed = "🔴",
+    failed = "🥀",
     final_child_indent = " ",
     final_child_prefix = "╰",
     non_collapsible = "─",
-    passed = "✅",
+    passed = "🌲",
     running = "⏳",
     running_animated = { "/", "|", "\\", "-", "/", "|", "\\", "-" },
     skipped = "⏩",
     unknown = "❔",
     watching = "👀"
   },
+  log_level = 3,
   jump = {
     enabled = true
   },
@@ -99,4 +100,7 @@ require("neotest").setup({
     },
     open = "botright vsplit | vertical resize 50"
   },
+  watch = {
+    enabled = true,
+  }
 })

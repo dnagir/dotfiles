@@ -25,10 +25,11 @@ nmap("<leader>/", ":nohlsearch<CR>")
 -- Using this mapping to keep the window open
 -- http://stackoverflow.com/questions/1444322/how-can-i-close-a-buffer-without-closing-the-window#answer-5179609
 nmap("<leader>d", ":bprevious<CR>:bdelete #<CR>")
+nmap("<leader>bd", ":bd<CR>")
 nmap("<leader>w", ":w<CR>")
 nmap("<leader>c", ":close<CR>")
-nmap(";", ":")                  -- Avoid using Shift to get to command.
-nmap("<leader>h", ":e %:h<CR>") -- Open directory of the current file.
+nmap(";", ":")             -- Avoid using Shift to get to command.
+nmap("<leader>l", ":lua ") -- Avoid using Shift to get to command.
 
 -- Easier copy-paste to system clipboard.
 map("<leader>y", '"+y')
@@ -63,6 +64,17 @@ local function map_buffer(buf)
   end, opts)
 end
 
+
+local function map_gitsigns()
+  nmap('<leader>gp', ':Gitsigns preview_hunk<CR>')
+  nmap('<leader>gj', ':Gitsigns next_hunk<CR>')
+  nmap('<leader>gk', ':Gitsigns prev_hunk<CR>')
+  nmap('<leader>gd', ':Gitsigns diffthis<CR>')
+
+  nmap('<leader>gs', ':Gitsigns stage_hunk<CR>')
+  nmap('<leader>gbs', ':Gitsigns stage_buffer<CR>')
+end
+
 local function map_telescope(setup)
   local telescope_builtin = require('telescope.builtin')
   nmap('<leader><leader>', telescope_builtin.buffers)
@@ -78,11 +90,11 @@ local function map_telescope(setup)
   nmap('<leader>f<leader>', telescope_builtin.builtin) -- Run a built-in Telescope command.
   nmap('<leader>fh', telescope_builtin.help_tags)
   nmap('<leader>fr', telescope_builtin.resume)
+  nmap('<leader>fb', telescope_builtin.current_buffer_fuzzy_find)
 
-  nmap('<leader>gl', telescope_builtin.live_grep)
-  nmap('<leader>gg', setup.live_grep_with_glob)
-  nmap('<leader>gs', telescope_builtin.grep_string)
-  nmap('<leader>gb', telescope_builtin.current_buffer_fuzzy_find)
+  nmap('<leader>fgl', telescope_builtin.live_grep)
+  nmap('<leader>fgg', setup.live_grep_with_glob)
+  nmap('<leader>fgs', telescope_builtin.grep_string)
 end
 
 local function build_cmp_mapping(cmp_mapping)
@@ -100,22 +112,25 @@ local function map_neotest()
     require('neotest').run.run()
   end)
 
-  nmap("<leader>tl", function()
+  nmap("<leader>t<leader>", function()
     require('neotest').run.run_last()
   end)
 
   nmap("<leader>ts", function()
-    require('neotest').summary.open()
+    require('neotest').summary.open({ enter = true })
+  end)
+
+  nmap("<leader>to", function()
+    require('neotest').output.open({ enter = true })
   end)
 end
 
 return {
-  -- Should be called to map buffer specific items when LSP is attached.
-  map_buffer = map_buffer,
-
-  map_telescope = map_telescope,
   build_cmp_mapping = build_cmp_mapping,
+  map_buffer = map_buffer, -- Should be called to map buffer specific items when LSP is attached.
+  map_gitsigns = map_gitsigns,
   map_neotest = map_neotest,
+  map_telescope = map_telescope,
 
   -- The mode with the LSP name will be called when LSP is attached.
   modes = {
@@ -129,6 +144,8 @@ return {
       nmap("<leader>tf", function()
         require('neotest').run.run({ vim.fn.expand("%"), extra_args = { "-short" } })
       end)
+
+      nmap("<leader>tr", ':lua =require("neotest").run.run({ vim.fn.expand("%:h"), extra_args = { "-short" } })')
     end,
 
 
