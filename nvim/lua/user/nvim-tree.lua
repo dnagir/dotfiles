@@ -8,6 +8,13 @@ vim.g.loaded_netrwPlugin = 1
 -- see the default keymaps at https://github.com/nvim-tree/nvim-tree.lua/blob/141c0f97c35f274031294267808ada59bb5fb08e/lua/nvim-tree/keymap.lua
 
 require("nvim-tree").setup {
+  view = {
+    side = "left",
+    number = true,
+    relativenumber = true,
+    signcolumn = "yes",
+    width = 50,
+  },
   renderer = {
     special_files = {
       "Cargo.toml",
