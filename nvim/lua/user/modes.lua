@@ -38,10 +38,21 @@ local function set_mode(ev)
   end
 end
 
--- after the language server attaches to the current buffer
+-- After the language server attaches to the current buffer.
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspModes', {}),
   callback = set_mode
+})
+
+-- Enable spellcheck for gitcommit.
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('UserFileTypeGitcommit', {}),
+  desc = "Settings for gitcommit",
+  pattern = "gitcommit",
+  callback = function()
+    vim.api.nvim_set_option_value('spell', true, { scope = 'local' })
+    vim.api.nvim_set_option_value('colorcolumn', '80', { scope = 'local' })
+  end
 })
 
 return {
