@@ -66,6 +66,66 @@ local function setup_rust(lspconfig, capabilities)
   })
 end
 
+local function setup_others(lspconfig, capabilities)
+  lspconfig.ocamllsp.setup {
+    capabilities = capabilities,
+  }
+
+  -- JSON: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jsonls
+  -- requires: npm i -g vscode-langservers-extracted
+  lspconfig.jsonls.setup {
+    capabilities = capabilities,
+  }
+
+  -- YAML: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#yamlls
+  -- requires: npm install -g yaml-language-server
+  lspconfig.yamlls.setup {
+    capabilities = capabilities,
+    settings = {
+      yaml = {},
+    }
+  }
+
+  -- Python 3.6+: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pylsp
+  -- Config options: https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
+  lspconfig.pylsp.setup {
+    capabilities = capabilities,
+    settings = {
+      pylsp = {
+        plugins = {},
+      }
+    }
+  }
+
+  -- HTML: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#html
+  -- requires: npm i -g vscode-langservers-extracted
+  lspconfig.html.setup {
+    capabilities = capabilities,
+  }
+
+  -- Elm: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#elmls
+  lspconfig.elmls.setup {
+    capabilities = capabilities,
+  }
+
+  -- SQL: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sqlls
+  -- Config: https://github.com/joe-re/sql-language-server
+  -- requires: npm i -g sql-language-server
+  lspconfig.sqlls.setup {
+    capabilities = capabilities,
+  }
+
+  -- TypeScript: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
+  lspconfig.tsserver.setup {
+    capabilities = capabilities,
+  }
+
+  -- Ruby: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruby_ls
+  lspconfig.ruby_ls.setup {
+    capabilities = capabilities,
+  }
+end
+
 -- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
 local function setup_lua(lspconfig)
   lspconfig.lua_ls.setup {
@@ -105,35 +165,39 @@ local tools = require('user.tools')
 -- Buffer local mappings.
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 local function map_buffer(buf)
-  local opts = { buffer = buf }
-  tools.nmap('lgd', vim.lsp.buf.definition, { buffer = buf, desc = 'LSP: definition' })
-  tools.nmap('lgt', vim.lsp.buf.type_definition, { buffer = buf, desc = 'LSP: type_definition' })
-  tools.nmap('lgr', vim.lsp.buf.references, { buffer = buf, desc = 'LSP: references' })
-  tools.nmap('lgi', vim.lsp.buf.implementation, { buffer = buf, desc = 'LSP: implementation' })
+  tools.nmap('gd', vim.lsp.buf.definition, { buffer = buf, desc = 'LSP: definition' })
+  tools.nmap('gt', vim.lsp.buf.type_definition, { buffer = buf, desc = 'LSP: type_definition' })
 
-  tools.nmap('lhk', vim.lsp.buf.hover, { buffer = buf, desc = 'LSP: hover' })
-  tools.nmap('lhs', vim.lsp.buf.signature_help, { buffer = buf, desc = 'LSP: signature_help' })
+  tools.nmap('K', vim.lsp.buf.hover, { buffer = buf, desc = 'LSP: hover' })
+  tools.nmap('<C-k>', vim.lsp.buf.signature_help, { buffer = buf, desc = 'LSP: signature_help' })
 
-  tools.nmap('lr', vim.lsp.buf.rename, { buffer = buf, desc = 'LSP: rename' })
+  tools.nmap('<F2>', vim.lsp.buf.rename, { buffer = buf, desc = 'LSP: rename' })
 
-  tools.nvmap('l.', vim.lsp.buf.code_action, { buffer = buf, desc = 'LSP: code_action' })
-  tools.nmap('lf', function()
+  tools.nvmap('<space>a', vim.lsp.buf.code_action, { buffer = buf, desc = 'LSP: code_action' })
+  tools.nmap('<space>f', function()
     vim.lsp.buf.format { async = true }
   end, { buffer = buf, desc = 'LSP: format' })
 end
 
--- Global LSP mappings.
-tools.nmap('<space>e', vim.diagnostic.open_float, { desc = "Diagnostic: open float" })
-tools.nmap('<space>k', vim.diagnostic.goto_prev, { desc = "Diagnostic: next" })
-tools.nmap('<space>j', vim.diagnostic.goto_next, { desc = "Diagnostic: previous" })
-tools.nmap('<space>q', vim.diagnostic.setloclist, { desc = "Diagnostic: send to localist" })
+
+local function map_global(telescope_builtin)
+  tools.nmap('gr', telescope_builtin.lsp_references, { desc = 'LSP: references' })
+  tools.nmap('gi', telescope_builtin.lsp_implementations, { desc = 'LSP: implementation' })
+
+  -- Diagnostics
+  tools.nmap('<space>e', vim.diagnostic.open_float, { desc = "Diagnostic: open float" })
+  tools.nmap('<space>k', vim.diagnostic.goto_prev, { desc = "Diagnostic: next" })
+  tools.nmap('<space>j', vim.diagnostic.goto_next, { desc = "Diagnostic: previous" })
+  tools.nmap('<space>q', vim.diagnostic.setloclist, { desc = "Diagnostic: send to localist" })
+end
 
 -- setup uses capabilities to setup the lspconfig and
-local function setup(capabilities, modes)
+local function setup(capabilities, telescope_builtin)
   local lspconfig = require('lspconfig')
   setup_lua(lspconfig)
   setup_go(lspconfig, capabilities)
   setup_rust(lspconfig, capabilities)
+  setup_others(lspconfig, capabilities)
   lspconfig.terraformls.setup({})
 
   -- after the language server attaches to the current buffer
@@ -146,6 +210,7 @@ local function setup(capabilities, modes)
       map_buffer(ev.buf)
     end
   })
+  map_global(telescope_builtin)
 end
 
 
