@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- Setup package mangager first.
 --------------------------------------------------------------------------------
-require('user.lazy')
+require 'user.plugins'
 
 require 'user.options'
 vim.cmd 'colorscheme slate'
@@ -20,6 +20,6 @@ require 'user.neotest'
 --------------------------------------------------------------------------------
 require('mason').setup()
 local cmp = require 'user.cmp'
-local lsp = require('user.lsp')
-lsp.setup(cmp.capabilities)
+local lsp = require 'user.lsp'
+lsp.setup(cmp.capabilities, require('telescope.builtin'))
 require 'user.modes'
