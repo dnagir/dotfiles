@@ -14,12 +14,31 @@ cmp.setup({
     -- completion = cmp.config.window.bordered(),
     -- documentation = cmp.config.window.bordered(),
   },
+
+  -- Default mappings are at:
+  -- https://github.com/hrsh7th/nvim-cmp/blob/538e37ba87284942c1d76ed38dd497e54e65b891/lua/cmp/config/mapping.lua
+  --
+  -- Insert mode:
+  -- <Down>" - down
+  -- "<Up>"  - up
+  -- "<C-n>" - trigger completion or next item
+  -- "<C-p>" - trigger completion or prev item
+  -- "<C-y>" - confirm
+  -- "<C-e>" - abort
+  --
+  -- Command line mode:
+  -- "<C-z"    - trigger completion or next item
+  -- "<Tab>"   - trigger completion or next item
+  -- "<S-Tab>" - trigger completion or prev item
+  -- "<C-n>"   - trigger completion or next item
+  -- "<C-p>"   - trigger completion or prev item
+  -- "<C-y>"   - confirm
+  -- "<C-e>"   - abort
   mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    -- Do not accept if not selected so that we do not insert suggestions in comments when hitting Enter.
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },

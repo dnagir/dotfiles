@@ -44,10 +44,15 @@ require('gitsigns').setup {
 
 local tools = require('user.tools')
 
-tools.nmap('<leader>gp', ':Gitsigns preview_hunk<CR>')
+-- Navigation
 tools.nmap('<leader>gj', ':Gitsigns next_hunk<CR>')
 tools.nmap('<leader>gk', ':Gitsigns prev_hunk<CR>')
 tools.nmap('<leader>gd', ':Gitsigns diffthis<CR>')
 
-tools.nmap('<leader>gs', ':Gitsigns stage_hunk<CR>')
-tools.nmap('<leader>gbs', ':Gitsigns stage_buffer<CR>')
+-- Hunk actions
+tools.nmap('<leader>ghp', ':Gitsigns preview_hunk<CR>')
+tools.nmap('<leader>ghs', ':Gitsigns stage_hunk<CR>')
+tools.nmap('<leader>ghr', ':Gitsigns reset_hunk<CR>')
+
+-- Buffer actions
+tools.nmap('<leader>gs', ':Gitsigns stage_buffer<CR>')

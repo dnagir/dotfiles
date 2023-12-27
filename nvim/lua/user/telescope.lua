@@ -91,3 +91,5 @@ tools.nmap('<leader>fb', telescope_builtin.current_buffer_fuzzy_find, { desc = '
 tools.nmap('<leader>fgl', telescope_builtin.live_grep, { desc = 'Telescope: live_grep' })
 tools.nmap('<leader>fgg', live_grep_with_glob, { desc = 'Telescope: grep with glob' })
 tools.nmap('<leader>fgs', telescope_builtin.grep_string, { desc = 'Telescope: grep for string at cursor' })
+
+tools.nmap('<leader>fc', telescope_builtin.commands, { desc = 'Telescope: find commands' })
