@@ -60,7 +60,11 @@ require("lazy").setup({
     --build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
   },
 
+  -- Git
   "lewis6991/gitsigns.nvim",
+  "sindrets/diffview.nvim",
+
+  -- LSPs
   "williamboman/mason.nvim",
 
   -- Remember the last position in a file.
@@ -84,5 +88,53 @@ require("lazy").setup({
       "nvim-neotest/neotest-go",
       "rouge8/neotest-rust",
     }
+  },
+
+  -- Luapad runs your code in context with overwritten print function and
+  -- displays the captured input as virtual text right there, where it was
+  -- called - in real time!
+  'rafcamlet/nvim-luapad',
+
+  -- Smart and powerful comment plugin for neovim.
+  -- Supports treesitter, dot repeat, left-right/up-down motions, hooks, and more.
+  -- Some of the mappings:
+  --
+  -- # NORMAL mode:
+  -- `gcc` - Toggles the current line using linewise comment
+  -- `gbc` - Toggles the current line using blockwise comment
+  -- `[count]gcc` - Toggles the number of line given as a prefix-count using linewise
+  -- `[count]gbc` - Toggles the number of line given as a prefix-count using blockwise
+  -- `gc[count]{motion}` - (Op-pending) Toggles the region using linewise comment
+  -- `gb[count]{motion}` - (Op-pending) Toggles the region using blockwise comment
+  --
+  -- # VISUAL mode:
+  -- `gc` - Toggles the region using linewise comment
+  -- `gb` - Toggles the region using blockwise comment
+  --
+  -- # Extra mappings:
+  -- `gco` - Insert comment to the next line and enters INSERT mode
+  -- `gcO` - Insert comment to the previous line and enters INSERT mode
+  -- `gcA` - Insert comment to end of the current line and enters INSERT mode
+  --
+  -- # Example: Linewise
+  -- `gcw` - Toggle from the current cursor position to the next word
+  -- `gc$` - Toggle from the current cursor position to the end of line
+  -- `gc}` - Toggle until the next blank line
+  -- `gc5j` - Toggle 5 lines after the current cursor position
+  -- `gc8k` - Toggle 8 lines before the current cursor position
+  -- `gcip` - Toggle inside of paragraph
+  -- `gca}` - Toggle around curly brackets
+  --
+  -- # Example: Blockwise
+  -- `gb2}` - Toggle until the 2 next blank line
+  -- `gbaf` - Toggle comment around a function (w/ LSP/treesitter support)
+  -- `gbac` - Toggle comment around a class (w/ LSP/treesitter support)
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    lazy = false,
+    config = function()
+      require('Comment').setup()
+    end
   },
 })
