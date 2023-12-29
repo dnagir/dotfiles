@@ -1,5 +1,8 @@
 local telescope = require("telescope")
 local telescopeConfig = require("telescope.config")
+local tools = require('user.tools')
+local telescope_builtin = require('telescope.builtin')
+local easypick = require("easypick")
 
 -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#file-and-text-search-in-hidden-files-and-directories
 local function hidden_files_vimgrep_arguments()
@@ -37,6 +40,25 @@ telescope.setup({
 })
 
 
+easypick.setup({
+  pickers = {
+    -- Show files that changes in git.
+    {
+      name = "changed_files",
+      command = "git diff --name-only HEAD",
+      previewer = easypick.previewers.file_diff()
+    },
+
+    -- Show git conflicts.
+    {
+      name = "conflicts",
+      command = "git diff --name-only --diff-filter=U --relative",
+      previewer = easypick.previewers.file_diff()
+    },
+  }
+})
+
+
 local session = {
   live_grep_glob = "**/*.",
   live_grep_default_text = "",
@@ -71,9 +93,7 @@ local function live_grep_with_glob()
 end
 
 
-local tools = require('user.tools')
-local telescope_builtin = require('telescope.builtin')
-tools.nmap('<leader><leader>', telescope_builtin.buffers, { desc = 'Telecope: buffers' })
+tools.nmap('<leader><leader>', ':Easypick changed_files<CR>', { desc = 'Telescope: find changed_files' })
 
 tools.nmap('<leader>fo', telescope_builtin.oldfiles, { desc = 'Telescope: old files' })
 tools.nmap('<leader>ff', telescope_builtin.find_files, { desc = 'Telescope: find files' })
@@ -86,7 +106,9 @@ tools.nmap('<leader>fq', telescope_builtin.quickfix, { desc = 'Telescope: quickf
 tools.nmap('<leader>f<leader>', telescope_builtin.builtin, { desc = 'Telescope: built-in commands' })
 tools.nmap('<leader>fh', telescope_builtin.help_tags, { desc = 'Telescope: help_tags' })
 tools.nmap('<leader>fr', telescope_builtin.resume, { desc = 'Telescope: resume previous search' })
-tools.nmap('<leader>fb', telescope_builtin.current_buffer_fuzzy_find, { desc = 'Telescope: search in buffer' })
+
+tools.nmap('<leader>fbb', telescope_builtin.buffers, { desc = 'Telecope: buffers' })
+tools.nmap('<leader>fbi', telescope_builtin.current_buffer_fuzzy_find, { desc = 'Telescope: search in buffer' })
 
 tools.nmap('<leader>fgl', telescope_builtin.live_grep, { desc = 'Telescope: live_grep' })
 tools.nmap('<leader>fgg', live_grep_with_glob, { desc = 'Telescope: grep with glob' })

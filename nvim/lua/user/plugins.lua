@@ -45,6 +45,9 @@ require("lazy").setup({
     branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
+  -- Telescope extension to pick from arbitrary commands.
+  { 'axkirillov/easypick.nvim', dependencies = { 'nvim-telescope/telescope.nvim' } },
+
   {
     "ray-x/go.nvim",
     dependencies = { -- optional packages
