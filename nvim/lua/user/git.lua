@@ -1,4 +1,17 @@
-require('gitsigns').setup {
+local gitsigns = require('gitsigns')
+local diffview = require('diffview')
+local diffview_lib = require('diffview.lib')
+
+diffview.setup {
+  file_panel = {
+    -- See ':h diffview-config-win_config'
+    win_config = {
+      width = 70,
+    },
+  },
+}
+
+gitsigns.setup {
   signs                        = {
     add          = { text = '│' },
     change       = { text = '│' },
@@ -41,6 +54,19 @@ require('gitsigns').setup {
   },
 }
 
+-- Enable spellcheck for gitcommit.
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('UserFileTypeGitcommit', {}),
+  desc = "Settings for gitcommit",
+  pattern = "gitcommit",
+  callback = function()
+    vim.api.nvim_set_option_value('spell', true, { scope = 'local' })
+    vim.api.nvim_set_option_value('colorcolumn', '80', { scope = 'local' })
+    vim.api.nvim_set_option_value('textwidth', 80, { scope = 'local' })
+  end
+})
+
+
 
 local tools = require('user.tools')
 
@@ -56,3 +82,13 @@ tools.nmap('<leader>ghr', ':Gitsigns reset_hunk<CR>')
 
 -- Buffer actions
 tools.nmap('<leader>gs', ':Gitsigns stage_buffer<CR>')
+
+-- Toggle the diff view.
+tools.nmap('<leader>gg', function()
+  local curr = diffview_lib.get_current_view()
+  if curr == nil then
+    vim.cmd 'DiffviewOpen'
+  else
+    vim.cmd 'DiffviewClose'
+  end
+end)

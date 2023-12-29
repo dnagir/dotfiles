@@ -44,17 +44,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = set_mode
 })
 
--- Enable spellcheck for gitcommit.
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('UserFileTypeGitcommit', {}),
-  desc = "Settings for gitcommit",
-  pattern = "gitcommit",
-  callback = function()
-    vim.api.nvim_set_option_value('spell', true, { scope = 'local' })
-    vim.api.nvim_set_option_value('colorcolumn', '80', { scope = 'local' })
-  end
-})
-
 return {
   modes = modes,
   get_current = function()
