@@ -1,1 +1,0 @@
-/Users/dima/dotfiles/vim/.vim
