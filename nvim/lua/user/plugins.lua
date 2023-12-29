@@ -153,4 +153,8 @@ require("lazy").setup({
     end,
     ft = { "markdown" },
   },
+
+  -- Vim plugin for automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
+  -- Adds <a-n> and <a-p> as keymaps to move between references and <a-i> as a textobject for the reference illuminated under the cursor.
+  'RRethy/vim-illuminate',
 })
