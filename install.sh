@@ -26,13 +26,12 @@ ln -sf $HOME/dotfiles/ssh/config $HOME/.ssh/config
 echo >&2 "Installing RubyGems config"
 ln -sf $HOME/dotfiles/.gemrc $HOME/.gemrc
 
-echo >&2 "Installing vim config"
-ln -sf $HOME/dotfiles/vim/.vimrc $HOME/.vimrc
-ln -sf $HOME/dotfiles/vim/.vim $HOME/.vim
-git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim || echo "Vundle probably already exists"
-vim +PluginInstall +qall
-
-
 echo >&2 "Installing NeoVim config"
 mkdir -p $HOME/.config
 ln -sf $HOME/dotfiles/nvim $HOME/.config
+
+echo >&2 "Installing vim config"
+mkdir -p "$HOME/.vim/bundle"
+ln -sf $HOME/dotfiles/vim/.vimrc $HOME/.vimrc
+git clone --depth 1 https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim || echo "Vundle probably already exists"
+vim +PluginInstall +qall
