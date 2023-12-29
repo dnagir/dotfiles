@@ -5,9 +5,9 @@
 	signingkey = 869C7BED69F09110
 [core]
 	filemode = true
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/dima/.gitignore_global
 	attributesfile = ~/.gitattributes_global
-  editor = vim
+  editor = nvim
 
 
 [alias]
@@ -18,10 +18,7 @@
   a=add . -A
   d=diff
   dc=diff --cached
-  p=push --all
-  ca=commit -am
   cv=commit -v
-  cav=commit -av
   recent=log --oneline -n15
 [color]
 	diff = auto
@@ -33,6 +30,5 @@
 	ff = only
 [url "git@github.com:"]
 	insteadOf = https://github.com/
-
 [pager]
 	log = false
