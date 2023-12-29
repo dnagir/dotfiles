@@ -23,8 +23,8 @@ vim.opt.signcolumn = "yes"   -- always show the sign column, otherwise it would 
 vim.opt.wrap = false         -- display lines as one long line
 
 -- number of columns and rows to always keep visible when scrolling
-vim.opt.scrolloff = 15
-vim.opt.sidescrolloff = 15
+vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 5
 
 -- vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
 

@@ -13,8 +13,7 @@ local function setup_go(lspconfig, capabilities)
   lspconfig.gopls.setup({
     capabilities = capabilities,
 
-    on_attach = function()
-      error("heeeello")
+    on_attach = function(_client)
     end,
 
     settings = {

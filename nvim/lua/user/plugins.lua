@@ -24,7 +24,7 @@ require("lazy").setup({
     event = "VeryLazy",
     opts = {}
   },
-  { "folke/neoconf.nvim", cmd = "Neoconf" },
+  { "folke/neoconf.nvim",       cmd = "Neoconf" },
   "folke/neodev.nvim",
 
   "neovim/nvim-lspconfig",
