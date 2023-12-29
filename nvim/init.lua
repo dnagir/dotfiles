@@ -4,7 +4,6 @@
 require 'user.plugins'
 
 require 'user.options'
-vim.cmd 'colorscheme slate'
 
 require 'user.markdown'
 require 'user.keymaps' -- Call early to setup leader key.

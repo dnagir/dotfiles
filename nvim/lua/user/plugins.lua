@@ -157,4 +157,43 @@ require("lazy").setup({
   -- Vim plugin for automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
   -- Adds <a-n> and <a-p> as keymaps to move between references and <a-i> as a textobject for the reference illuminated under the cursor.
   'RRethy/vim-illuminate',
+
+  -- color schemes: https://github.com/ray-x/starry.nvim
+  {
+    'ray-x/starry.nvim',
+    config = function()
+      require('starry').setup {
+        border = false, -- Split window borders
+        italics = {
+          comments = true,
+          strings = false,
+          keywords = false,
+          functions = false,
+          variables = false
+        },
+        contrast = {       -- Select which windows get the contrast background
+          enable = false,  -- Enable contrast
+          terminal = true, -- Darker terminal
+          filetypes = {},  -- Which filetypes get darker? e.g. *.vim, *.cpp, etc.
+        },
+        text_contrast = {
+          lighter = false, -- Higher contrast text for lighter style
+          darker = false   -- Higher contrast text for darker style
+        },
+        disable = {
+          background = false,  -- true: transparent background
+          term_colors = false, -- Disable setting the terminal colors
+          eob_lines = false    -- Make end-of-buffer lines invisible
+        },
+        style = {
+          fix = false,             -- fix=true - disable random loading
+          disable = {},            -- a list of styles to disable, e.g. {'bold', 'underline'}
+          darker_contrast = false, -- More contrast for darker style
+          daylight_swith = true,   -- Enable day and night style switching
+          deep_black = false,      -- Enable a deeper black background
+        },
+      }
+      vim.cmd 'colorscheme starry'
+    end
+  },
 })
