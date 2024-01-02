@@ -164,11 +164,11 @@ local tools = require('user.tools')
 -- Buffer local mappings.
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 local function map_buffer(buf)
-  tools.nmap('gd', vim.lsp.buf.definition, { buffer = buf, desc = 'LSP: definition' })
-  tools.nmap('gt', vim.lsp.buf.type_definition, { buffer = buf, desc = 'LSP: type_definition' })
+  tools.nmap('<leader>ld', vim.lsp.buf.definition, { buffer = buf, desc = 'LSP: definition' })
+  tools.nmap('<leader>lt', vim.lsp.buf.type_definition, { buffer = buf, desc = 'LSP: type_definition' })
 
   tools.nmap('K', vim.lsp.buf.hover, { buffer = buf, desc = 'LSP: hover' })
-  tools.nmap('<C-k>', vim.lsp.buf.signature_help, { buffer = buf, desc = 'LSP: signature_help' })
+  tools.nmap('<leader>ls', vim.lsp.buf.signature_help, { buffer = buf, desc = 'LSP: signature_help' })
 
   tools.nmap('<F2>', vim.lsp.buf.rename, { buffer = buf, desc = 'LSP: rename' })
 
@@ -180,8 +180,8 @@ end
 
 
 local function map_global(telescope_builtin)
-  tools.nmap('gr', telescope_builtin.lsp_references, { desc = 'LSP: references' })
-  tools.nmap('gi', telescope_builtin.lsp_implementations, { desc = 'LSP: implementation' })
+  tools.nmap('<leader>lr', telescope_builtin.lsp_references, { desc = 'LSP: references' })
+  tools.nmap('<leader>li', telescope_builtin.lsp_implementations, { desc = 'LSP: implementation' })
 
   -- Diagnostics
   tools.nmap('<space>e', vim.diagnostic.open_float, { desc = "Diagnostic: open float" })

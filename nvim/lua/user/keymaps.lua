@@ -18,8 +18,7 @@ tools.nmap("<leader>d", ":bprevious<CR>:bdelete #<CR>", { desc = 'Close buffer (
 tools.nmap("<leader>bd", ":bd<CR>")
 tools.nmap("<leader>w", ":w<CR>")
 tools.nmap("<leader>c", ":close<CR>")
-tools.nmap(";", ":")             -- Avoid using Shift to get to command.
-tools.nmap("<leader>l", ":lua ") -- Avoid using Shift to get to command.
+tools.nmap(";", ":") -- Avoid using Shift to get to command.
 
 -- Easier copy-paste to system clipboard.
 tools.map("<leader>y", '"+y', { desc = 'Clipboard: copy' })
