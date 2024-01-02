@@ -1,10 +1,23 @@
 local function enable_format_on_save()
+  local filetypes = {
+    "go",
+    "lua",
+    "rust",
+  }
+
   local group = "AutoFormatting"
   vim.api.nvim_create_augroup(group, {})
   vim.api.nvim_create_autocmd('BufWritePre', {
     group = group,
     callback = function()
-      vim.lsp.buf.format()
+      local curr = vim.bo.filetype
+      -- Only autofomat the whitelisted file types
+      for _, ft in ipairs(filetypes) do
+        if ft == curr then
+          vim.lsp.buf.format()
+          return
+        end
+      end
     end,
   })
 end
