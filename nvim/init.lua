@@ -12,7 +12,7 @@ require 'user.inserts'
 require 'user.telescope'
 require 'user.treesitter'
 require 'user.git'
-require 'user.nvim-tree'
+require 'user.trouble'
 require 'user.illuminate'
 require 'user.neotest'
 
