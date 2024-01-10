@@ -101,7 +101,7 @@ local function live_grep_with_glob()
 end
 
 
-tools.nmap('<leader><leader>', ':Easypick changed_files<CR>', { desc = 'Telescope: find changed_files' })
+tools.nmap('<leader><leader>', telescope_builtin.buffers, { desc = 'Telecope: buffers' })
 
 tools.nmap('<leader>fo', telescope_builtin.oldfiles, { desc = 'Telescope: old files' })
 tools.nmap('<leader>ff', telescope_builtin.find_files, { desc = 'Telescope: find files' })
@@ -111,15 +111,17 @@ tools.nmap('<leader>fd', function()
 end, { desc = 'Telescope: find files in buffer directory' })
 tools.nmap('<leader>fm', telescope_builtin.marks, { desc = 'Telescope: marsks' })
 tools.nmap('<leader>fq', telescope_builtin.quickfix, { desc = 'Telescope: quickfix' })
-tools.nmap('<leader>f<leader>', telescope_builtin.builtin, { desc = 'Telescope: built-in commands' })
 tools.nmap('<leader>fh', telescope_builtin.help_tags, { desc = 'Telescope: help_tags' })
 tools.nmap('<leader>fr', telescope_builtin.resume, { desc = 'Telescope: resume previous search' })
 
-tools.nmap('<leader>fbb', telescope_builtin.buffers, { desc = 'Telecope: buffers' })
-tools.nmap('<leader>fbi', telescope_builtin.current_buffer_fuzzy_find, { desc = 'Telescope: search in buffer' })
+tools.nmap('<leader>gf', ':Easypick changed_files<CR>', { desc = 'Telescope: find changed_files' })
+
+tools.nmap('<leader>fb', telescope_builtin.current_buffer_fuzzy_find, { desc = 'Telescope: search in buffer' })
 
 tools.nmap('<leader>fgl', telescope_builtin.live_grep, { desc = 'Telescope: live_grep' })
 tools.nmap('<leader>fgg', live_grep_with_glob, { desc = 'Telescope: grep with glob' })
 tools.nmap('<leader>fgs', telescope_builtin.grep_string, { desc = 'Telescope: grep for string at cursor' })
+tools.nmap('<leader>fgs', telescope_builtin.grep_string, { desc = 'Telescope: grep for string at cursor' })
 
+tools.nmap('<leader>f<leader>', telescope_builtin.builtin, { desc = 'Telescope: built-in commands' })
 tools.nmap('<leader>fc', telescope_builtin.commands, { desc = 'Telescope: find commands' })
