@@ -52,7 +52,7 @@ neotest.setup({
   },
   quickfix = {
     enabled = true,
-    open = true,
+    open = false,
   },
   run = {
     enabled = true
@@ -108,18 +108,28 @@ neotest.setup({
 
 
 local tools = require('user.tools')
+
+
 tools.nmap("<leader>tt", function()
   neotest.run.run()
-end, { desc = 'Test: run current' })
+end, { desc = 'Test: run nearest' })
+
+tools.nmap("<leader>ta", function()
+  neotest.run.run({ suite = true })
+end, { desc = 'Test: run all' })
 
 tools.nmap("<leader>t<leader>", function()
   neotest.run.run_last()
 end, { desc = 'Test: run last' })
 
 tools.nmap("<leader>ts", function()
-  neotest.summary.open({ enter = true })
-end, { desc = 'Test: open summary' })
+  neotest.summary.toggle({ enter = true })
+end, { desc = 'Test: toggle summary' })
 
 tools.nmap("<leader>to", function()
   neotest.output.open({ enter = true })
 end, { desc = 'Test: open popup' })
+
+tools.nmap("<leader>tw", function()
+  neotest.watch.toggle()
+end, { desc = 'Test: toggle watch' })
