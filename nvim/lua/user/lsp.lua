@@ -34,10 +34,8 @@ local function setup_go(lspconfig, capabilities)
         completeUnimported = true,
         analyses = {
           -- Full list: https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
-          unusedparams = true,
           unusedwrite = true,
           unusedvariable = true,
-          shadow = false,
         },
         staticcheck = true,
         gofumpt = false,
@@ -51,7 +49,6 @@ local function setup_rust(lspconfig, capabilities)
     capabilities = capabilities,
 
     on_attach = function(client)
-      require("completion").on_attach(client)
     end,
 
     settings = {
