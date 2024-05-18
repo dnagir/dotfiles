@@ -1,4 +1,14 @@
 local cmp = require("cmp")
+local types = require('cmp.types')
+
+-- See https://github.com/hrsh7th/nvim-cmp/blob/538e37ba87284942c1d76ed38dd497e54e65b891/lua/cmp/config/mapping.lua#L44-L52
+function completeOrNext()
+  if cmp.visible() then
+    cmp.select_next_item({ behavior = types.cmp.SelectBehavior.Insert })
+  else
+    cmp.complete()
+  end
+end
 
 cmp.setup({
   snippet = {
@@ -35,6 +45,8 @@ cmp.setup({
   -- "<C-y>"   - confirm
   -- "<C-e>"   - abort
   mapping = cmp.mapping.preset.insert({
+    ['<C-Space>'] = completeOrNext,
+
     -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     -- Do not accept if not selected so that we do not insert suggestions in comments when hitting Enter.
