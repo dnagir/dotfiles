@@ -2,9 +2,3 @@ Host *
   ForwardAgent yes
   ServerAliveInterval 30
   AddKeysToAgent yes
-
-# SSH over Session Manager
-Host i-* mi-*
-    User ubuntu
-    ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
-    IdentityFile ~/.ssh/eventstore_dev
