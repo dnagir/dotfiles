@@ -28,12 +28,12 @@ telescope.setup({
       height = 0.99,
       width = 0.99,
       prompt_position = 'bottom',
-      preview_height = 0.75
+      preview_height = 0.5
     },
 
     file_ignore_patterns = {
       '.git/',
-      --'vendor/',       -- Go
+      'vendor/',       -- Go
       'target/',       -- Rust
       'node_modules/', -- JavaScript
     },
@@ -101,21 +101,20 @@ local function live_grep_with_glob()
 end
 
 
-tools.nmap('<leader><leader>', telescope_builtin.buffers, { desc = 'Telecope: buffers' })
-
 tools.nmap('<leader>fo', telescope_builtin.oldfiles, { desc = 'Telescope: old files' })
 tools.nmap('<leader>ff', telescope_builtin.find_files, { desc = 'Telescope: find files' })
 tools.nmap('<leader>fd', function()
   -- Find files from the current file's directory.
   telescope_builtin.find_files({ cwd = vim.fn.expand('%:h') })
 end, { desc = 'Telescope: find files in buffer directory' })
-tools.nmap('<leader>fm', telescope_builtin.marks, { desc = 'Telescope: marsks' })
+tools.nmap('<leader>fm', telescope_builtin.marks, { desc = 'Telescope: marks' })
 tools.nmap('<leader>fq', telescope_builtin.quickfix, { desc = 'Telescope: quickfix' })
 tools.nmap('<leader>fh', telescope_builtin.help_tags, { desc = 'Telescope: help_tags' })
 tools.nmap('<leader>fr', telescope_builtin.resume, { desc = 'Telescope: resume previous search' })
 
 tools.nmap('<leader>gf', ':Easypick changed_files<CR>', { desc = 'Telescope: find changed_files' })
 
+tools.nmap('<leader>f<leader>', telescope_builtin.buffers, { desc = 'Telecope: buffers' })
 tools.nmap('<leader>fb', telescope_builtin.current_buffer_fuzzy_find, { desc = 'Telescope: search in buffer' })
 
 tools.nmap('<leader>fgl', telescope_builtin.live_grep, { desc = 'Telescope: live_grep' })
@@ -123,5 +122,5 @@ tools.nmap('<leader>fgg', live_grep_with_glob, { desc = 'Telescope: grep with gl
 tools.nmap('<leader>fgs', telescope_builtin.grep_string, { desc = 'Telescope: grep for string at cursor' })
 tools.nmap('<leader>fgs', telescope_builtin.grep_string, { desc = 'Telescope: grep for string at cursor' })
 
-tools.nmap('<leader>f<leader>', telescope_builtin.builtin, { desc = 'Telescope: built-in commands' })
-tools.nmap('<leader>fc', telescope_builtin.commands, { desc = 'Telescope: find commands' })
+tools.nmap('<leader>fcb', telescope_builtin.builtin, { desc = 'Telescope: built-in commands' })
+tools.nmap('<leader>fcf', telescope_builtin.commands, { desc = 'Telescope: find commands' })
