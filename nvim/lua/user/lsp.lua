@@ -178,7 +178,9 @@ local function map_buffer(buf)
   tools.nmap('<leader>lt', vim.lsp.buf.type_definition, { buffer = buf, desc = 'LSP: type_definition' })
 
   tools.nmap('K', vim.lsp.buf.hover, { buffer = buf, desc = 'LSP: hover' })
-  tools.nmap('<leader>ls', vim.lsp.buf.signature_help, { buffer = buf, desc = 'LSP: signature_help' })
+  vim.keymap.set({ 'i', 'n', 'v' }, '<leader>lk',
+    vim.lsp.buf.signature_help,
+    { buffer = buf, desc = 'LSP: signature_help' })
 
   tools.nmap('<F2>', vim.lsp.buf.rename, { buffer = buf, desc = 'LSP: rename' })
 
