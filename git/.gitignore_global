@@ -16,3 +16,6 @@ db/neo4j-*
 .DS_Store
 
 .tool-versions
+
+# Go code coverage sometimes can be dumped into this file
+cover.cov

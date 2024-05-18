@@ -32,3 +32,5 @@
 	insteadOf = https://github.com/
 [pager]
 	log = false
+[init]
+	defaultBranch = main
