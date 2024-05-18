@@ -5,7 +5,7 @@
 	signingkey = 869C7BED69F09110
 [core]
 	filemode = true
-	excludesfile = /Users/dima/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	attributesfile = ~/.gitattributes_global
   editor = nvim
 
