@@ -1,14 +1,17 @@
 #!/bin/bash
 set -euo pipefail
 
-echo >&2 "Installing SSH Keys from Bitwarden (remember to use bw unlock/login)!"
-mkdir -p $HOME/.ssh/
-bw get item c7e1f659-efd5-4c14-8607-afaf003a3d52 | jq -r '.fields[] | select(.name=="PrivateKey") | .value' > $HOME/.ssh/id_rsa
-bw get item c7e1f659-efd5-4c14-8607-afaf003a3d52 | jq -r '.fields[] | select(.name=="PublicKey") | .value'  > $HOME/.ssh/id_rsa.pub
+item=$(bw get item 9f3bebb3-7e33-40c5-80dc-b17400d6c3d5)
 
-chmod 600 ~/.ssh/id_rsa
-chmod 644 ~/.ssh/id_rsa.pub
-
-
+echo >&2
 echo >&2 "Importing the GPG Private Key"
-lpass show 3935622711685572767 --field 'Private Key' | gpg --import
+jq -cr '.fields[] | select(.name=="PrivateKey") | .value' <<< "$item" | base64 --decode | gpg --import
+
+
+echo >&2
+echo >&2 "Amending git config with the key"
+jq -cr '.fields[] | select(.name=="KeyID") | .value' <<< "$item"| xargs -n1 git config --global user.signingkey
+
+echo >&2
+echo >&2 "Please add the below public key to GitHub"
+jq -cr '.fields[] | select(.name=="PublicKey") | .value' <<< "$item" | base64 --decode

@@ -1,8 +1,7 @@
 [user]
 	name = Dmytrii Nagirniak
 	email = dnagir@gmail.com
-	signkey = 869C7BED69F09110
-	signingkey = 869C7BED69F09110
+	signingkey = 6842549D4D4E658E
 [core]
 	filemode = true
 	excludesfile = ~/.gitignore_global

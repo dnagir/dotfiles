@@ -2,7 +2,23 @@
 
 The ones that can be public at least.
 
-1. Clone to the root of `$HOME`
-2. `dotfiles/install.sh`
-3. Install `lpass` (LastPass CLI) and `lpass login`
-4. `dotfiles/install-secrets.sh`
+Pre-requisites:
+
+- Tools:
+  - `git`
+  - `bw` (BitWarden CLI)
+  - `jq`
+  - `gpg`
+  - `base64` (`coreutils` on Linux)
+- SSH:
+  - agent is installed
+  - new SSH keys are setup
+  - the SSH public keys is [added to GitHub](https://github.com/settings/keys).
+
+Run:
+
+```sh
+git clone git@github.com:dnagir/dotfiles.git $HOME`
+$HOME/dotfiles/install.sh
+$HOME/dotfiles/install-secrets.sh
+```
