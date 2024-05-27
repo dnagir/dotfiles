@@ -18,7 +18,7 @@ alias b='bundle exec'
 
 ##### Docker
 alias d='docker'
-alias dc='docker-compose'
+alias dc='docker compose'
 alias dr='docker run --rm -it'
 alias docker-rma='docker rm -f $(docker ps -a -q)'
 alias docker-rmia='docker rmi $(docker images -q)'
