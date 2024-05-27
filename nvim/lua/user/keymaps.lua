@@ -22,7 +22,7 @@ tools.nmap("<leader>bd", ":bd<CR>", { desc = "Delete buffer" })
 tools.nmap("<leader>w", ":w<CR>", { desc = "Write file" })
 tools.nmap("<leader>cc", ":close<CR>", { desc = "Close the the current window" })
 tools.nmap("<leader>cq", ":cclose<CR>", { desc = "Close the quickfix window" })
-tools.nmap("<leader>cqa", ":qa!<CR>", { desc = "Quit DISCARDING all changes" })
+tools.nmap("<leader>qa", ":qa!<CR>", { desc = "Quit DISCARDING all changes" })
 
 -- Easier copy-paste to system clipboard.
 tools.map("<leader>y", '"+y', { desc = 'Clipboard: copy' })
