@@ -1,4 +1,4 @@
-function isarray(x)
+local function isarray(x)
   return type(x) == "table" and x[1] ~= nil
 end
 
@@ -14,7 +14,7 @@ end
 
 -- Returns a new table with all the given tables merged together. If a key exists in multiple tables the right-most table's value is used.
 -- https://github.com/rxi/lume/blob/98847e7812cf28d3d64b289b03fad71dc704547d/lume.lua#L348C1-L358C4
-function merge_tables(...)
+local function merge_tables(...)
   local rtn = {}
   for i = 1, select("#", ...) do
     local t = select(i, ...)

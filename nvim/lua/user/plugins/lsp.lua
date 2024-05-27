@@ -26,7 +26,7 @@ local function setup_go(lspconfig, capabilities)
   lspconfig.gopls.setup({
     capabilities = capabilities,
 
-    on_attach = function(_client)
+    on_attach = function(_) -- client
     end,
 
     settings = {
@@ -48,7 +48,7 @@ local function setup_rust(lspconfig, capabilities)
   lspconfig.rust_analyzer.setup({
     capabilities = capabilities,
 
-    on_attach = function(client)
+    on_attach = function(_) -- client
     end,
 
     settings = {
@@ -169,11 +169,11 @@ local function setup_lua(lspconfig)
   }
 end
 
-local tools = require('user.tools')
 
 -- Buffer local mappings.
 -- See `:help vim.lsp.*` for documentation on any of the below functions
-local function map_buffer(buf)
+local function setup_keymaps_for_buffer(buf)
+  local tools = require('user.tools')
   tools.nmap('<leader>ld', vim.lsp.buf.definition, { buffer = buf, desc = 'LSP: definition' })
   tools.nmap('<leader>lt', vim.lsp.buf.type_definition, { buffer = buf, desc = 'LSP: type_definition' })
 
@@ -209,7 +209,8 @@ local function map_buffer(buf)
 end
 
 
-local function map_global(telescope_builtin)
+local function setup_keymaps(telescope_builtin)
+  local tools = require('user.tools')
   tools.nmap('<leader>lr', telescope_builtin.lsp_references, { desc = 'LSP: references' })
   tools.nmap('<leader>li', telescope_builtin.lsp_implementations, { desc = 'LSP: implementation' })
 
@@ -221,7 +222,7 @@ local function map_global(telescope_builtin)
 end
 
 -- setup uses capabilities to setup the lspconfig and
-local function setup(capabilities, telescope_builtin)
+local function setup(capabilities)
   local lspconfig = require('lspconfig')
   setup_lua(lspconfig)
   setup_go(lspconfig, capabilities)
@@ -236,13 +237,37 @@ local function setup(capabilities, telescope_builtin)
       enable_format_on_save()
       -- Enable completion triggered by <c-x><c-o>
       vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-      map_buffer(ev.buf)
+      setup_keymaps_for_buffer(ev.buf)
     end
   })
-  map_global(telescope_builtin)
+  local telescope_builtin = require('telescope.builtin')
+  setup_keymaps(telescope_builtin)
 end
 
 
 return {
-  setup = setup,
+  -- Easily install and manage LSP servers, DAP servers, linters, and formatters.
+  "williamboman/mason.nvim",
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+    },
+    config = function()
+      -- It's important that you set up the plugins in the following order:
+      --
+      -- mason.nvim
+      -- mason-lspconfig.nvim
+      -- Setup servers via lspconfig
+      require('mason').setup()
+      require('mason-lspconfig').setup()
+      setup(require('cmp_nvim_lsp').default_capabilities())
+    end
+  },
 }

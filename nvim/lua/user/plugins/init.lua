@@ -1,52 +1,11 @@
---------------------------------------------------------------------------------
--- Start: Package manager
---------------------------------------------------------------------------------
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
---------------------------------------------------------------------------------
--- End: Package manager
---------------------------------------------------------------------------------
-
-
-require("lazy").setup({
+return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {}
   },
-  { "folke/neoconf.nvim",       cmd = "Neoconf" },
+  { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
-
-  "neovim/nvim-lspconfig",
-  "hrsh7th/cmp-nvim-lsp",
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-path",
-  "hrsh7th/cmp-cmdline",
-  "hrsh7th/nvim-cmp",
-
-  "L3MON4D3/LuaSnip",
-  "saadparwaiz1/cmp_luasnip",
-  "petertriho/cmp-git",
-
-  "nvim-treesitter/nvim-treesitter",
-
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
-  -- Telescope extension to pick from arbitrary commands.
-  { 'axkirillov/easypick.nvim', dependencies = { 'nvim-telescope/telescope.nvim' } },
 
   {
     "ray-x/go.nvim",
@@ -63,52 +22,12 @@ require("lazy").setup({
     --build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
   },
 
-  -- Git
-  "lewis6991/gitsigns.nvim",
-  "sindrets/diffview.nvim",
-
-  -- LSPs
-  "williamboman/mason.nvim",
-
   -- Remember the last position in a file.
   {
     "vladdoster/remember.nvim",
     config = function()
       require("remember")
     end,
-  },
-  {
-    "folke/trouble.nvim",
-    opts = {
-      multiline = false, -- compact the messages into one line, open with K if needed
-      --------------------------------------------------------------------------------
-      -- disable the icons
-      --------------------------------------------------------------------------------
-      icons = false,
-      fold_open = "v",      -- icon used for open folds
-      fold_closed = ">",    -- icon used for closed folds
-      indent_lines = false, -- add an indent guide below the fold icons
-      signs = {
-        -- icons / text used for a diagnostic
-        error = "error",
-        warning = "warn",
-        hint = "hint",
-        information = "info"
-      },
-      use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
-    },
-  },
-  {
-    "nvim-neotest/neotest",
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter",
-
-      "nvim-neotest/neotest-go",
-      "rouge8/neotest-rust",
-    }
   },
 
   -- Luapad runs your code in context with overwritten print function and
@@ -160,22 +79,6 @@ require("lazy").setup({
   },
 
 
-  -- Markdown preview.
-  -- install with yarn or npm
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && npm install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
-  },
-
-  -- Vim plugin for automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
-  -- Adds <a-n> and <a-p> as keymaps to move between references and <a-i> as a textobject for the reference illuminated under the cursor.
-  'RRethy/vim-illuminate',
-
   -- color schemes: https://github.com/ray-x/starry.nvim
   {
     'ray-x/starry.nvim',
@@ -214,4 +117,4 @@ require("lazy").setup({
       vim.cmd 'colorscheme starry'
     end
   },
-})
+}
