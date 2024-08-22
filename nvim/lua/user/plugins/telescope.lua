@@ -56,6 +56,8 @@ local function setup_keymaps()
 
   tools.nmap('<leader>fo', telescope_builtin.oldfiles, { desc = 'Telescope: old files' })
   tools.nmap('<leader>ff', telescope_builtin.find_files, { desc = 'Telescope: find files' })
+  tools.nmap('<leader>fs', telescope_builtin.lsp_document_symbols,
+    { desc = 'Telescope: find symbols in the current buffer' })
   tools.nmap('<leader>fd', function()
     -- Find files from the current file's directory.
     telescope_builtin.find_files({ cwd = vim.fn.expand('%:h') })
