@@ -18,7 +18,7 @@ vim.opt.shiftwidth = 2       -- the number of spaces inserted for each indentati
 vim.opt.tabstop = 4          -- insert 2 spaces for a tab
 
 vim.opt.number = true        -- set numbered lines
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.signcolumn = "yes"   -- always show the sign column, otherwise it would shift the text each time
 vim.opt.wrap = false         -- display lines as one long line
 
