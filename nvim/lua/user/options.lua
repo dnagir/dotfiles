@@ -14,8 +14,8 @@ vim.opt.termguicolors = true -- set term gui colors (most terminals support this
 vim.opt.undofile = true      -- enable persistent undo
 vim.opt.writebackup = false  -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.expandtab = true     -- convert tabs to spaces
-vim.opt.shiftwidth = 2       -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 4          -- insert 2 spaces for a tab
+vim.opt.shiftwidth = 0       -- the number of spaces inserted for each indentation (zero = same as tabstop)
+vim.opt.tabstop = 4          -- insert N spaces for a tab
 
 vim.opt.number = true        -- set numbered lines
 vim.opt.relativenumber = false
@@ -31,3 +31,15 @@ vim.opt.sidescrolloff = 10
 vim.opt.shortmess:append "c"
 
 vim.opt.wildignore = ".git,*.o,*.obj,tmp,*swp,*.log,"
+
+
+-- setup invisible characters to be visible better
+vim.opt.listchars = {
+    -- eol      = '⏎',
+    tab      = '· ',
+    trail    = '￮',
+    nbsp     = '⏑',
+    -- word wrap
+    extends  = '▶',
+    precedes = '◀',
+}

@@ -25,10 +25,10 @@ return {
         -- Use `''` (empty string) to not create one.
         mappings = {
           close       = 'q',
-          go_in       = 'l',
-          go_in_plus  = 'L',
-          go_out      = 'h',
-          go_out_plus = 'H',
+          go_in       = '<C-l>',
+          go_in_plus  = '',
+          go_out      = '<C-h>',
+          go_out_plus = '',
           reset       = '<BS>',
           reveal_cwd  = '@',
           show_help   = 'g?',
