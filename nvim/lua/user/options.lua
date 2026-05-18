@@ -43,3 +43,5 @@ vim.opt.listchars = {
     extends  = '▶',
     precedes = '◀',
 }
+
+vim.lsp.inlay_hint.enable(false)
