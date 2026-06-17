@@ -6,7 +6,8 @@
 	filemode = true
 	excludesfile = ~/.gitignore_global
 	attributesfile = ~/.gitattributes_global
-  editor = nvim
+	autocrlf = false
+    editor = nvim
 
 
 [alias]

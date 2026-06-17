@@ -6,6 +6,7 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
 alias s='git status'
+alias j='jj status --no-pager; jj log --no-pager -n 5'
 
 alias f='fg'
 alias tf='terraform'
